@@ -6,6 +6,8 @@ class Titulacao {
 	Integer cargaHoraria
 	String instituicao
 
+	static hasMany = [funcionarios:FuncionarioTitulacao]
+
     static constraints = {
     }
 }

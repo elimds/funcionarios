@@ -1,3 +1,5 @@
+package funcionarios
+
 public enum EscolaridadeEnum {
 	FUNDAMENTAL('Ensino Fundamental'),
 	MEDIO('Ensino Médio'),

@@ -10,6 +10,8 @@ class Endereco {
 	String cep
 	Funcionario funcionario
 
+	static belongsTo = [funcionario:Funcionario]
+
     static constraints = {
     }
 }

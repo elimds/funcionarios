@@ -1,3 +1,5 @@
+package funcionarios
+
 public enum SituacaoEnum {
 	ATIVO('Ativo'),
 	INATIVO('Inativo'),

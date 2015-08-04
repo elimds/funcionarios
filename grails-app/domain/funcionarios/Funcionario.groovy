@@ -23,6 +23,10 @@ class Funcionario {
 	Integer banco
 	String nomeBanco
 
+	static hasOne = [chefia:Departamento]
+	static belongsTo = [cargo:Cargo, departamento:Departamento]
+	static hasMany = [enderecos:Endereco, contatos:Contato, historicosFuncional:HistoricoFuncional, titulacoes:FuncionarioTitulacao, dependentes: Dependente]
+	
     static constraints = {
     }
 }

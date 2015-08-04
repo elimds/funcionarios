@@ -1,3 +1,5 @@
+package funcionarios
+
 public enum FuncaoEnum {
 	CD4('CD4'),
 	CD3('CD3'),

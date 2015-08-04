@@ -7,6 +7,8 @@ class Dependente {
 	String cpf
 	Funcionario funcionario
 
+	static belongsTo = [funcionario:Funcionario]
+
     static constraints = {
     }
 }

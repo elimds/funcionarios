@@ -7,6 +7,8 @@ class HistoricoFuncional {
 	Date dataFim
 	FuncaoEnum funcaoGratificada
 
+	static belongsTo = [departamento:Departamento, funcionario:Funcionario]
+
     static constraints = {
     }
 }

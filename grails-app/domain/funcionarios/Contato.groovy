@@ -5,6 +5,8 @@ class Contato {
 	String valor
 	Funcionario funcionario
 
+	static belongsTo = [funcionario:Funcionario]
+
     static constraints = {
     }
 }

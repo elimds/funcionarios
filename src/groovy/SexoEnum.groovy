@@ -1,3 +1,5 @@
+package funcionarios
+
 public enum SexoEnum{
 	MASCULINO('Masculino'),
 	FEMININO('Feminino'),
