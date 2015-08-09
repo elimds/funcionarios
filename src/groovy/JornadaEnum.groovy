@@ -1,5 +1,3 @@
-package funcionarios
-
 public enum JornadaEnum {
 	QUARENTAHORAS('40 horas'),
 	VINTEHORAS('20 horas'),

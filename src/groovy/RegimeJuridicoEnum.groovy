@@ -1,5 +1,3 @@
-package funcionarios
-
 public enum RegimeJuridicoEnum{
 	UNICO('Regime Único'),
 	TEMPORARIO('Temporário'),

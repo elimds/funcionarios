@@ -5,9 +5,10 @@ class Departamento {
 	String sigla
 	String ramal
 	String email
-	Funcionario chefe
+	String chefe
+	//Funcionario chefe
 
-	static belongsTo = [chefe:Funcionario]
+	//static belongsTo = [chefe:Funcionario]
 
 	static hasMany = [historicos:HistoricoFuncional, funcionarios:Funcionario]
 

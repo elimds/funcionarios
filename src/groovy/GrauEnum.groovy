@@ -1,5 +1,3 @@
-package funcionarios
-
 public enum GrauEnum {
 	GRADUACAO('Graduação'),
 	ESPECIALIZACAO('Especialização'),
