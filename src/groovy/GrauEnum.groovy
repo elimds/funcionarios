@@ -1,13 +1,26 @@
-public enum GrauEnum {
-	GRADUACAO('Graduação'),
-	ESPECIALIZACAO('Especialização'),
-	MESTRADO('Mestrato'),
-	DOUTORADO('Doutorado'),
-	POSDOUTORADO('Pós-Doutorado'),
-	CAPACITACAO('Capacitação')
-	String id
 
-	GrauEnum(String id){
-		this.id = id
+public enum GrauEnum {
+	GRADUAÇÃO ("Graduação"),
+	ESPECIALIZAÇÃO ("Especialização"),
+	MESTRADO ("Mestrado"),
+	DOUTORADO ("Doutorado"),
+	POSDOUTORADO ("Pós-Doutorado"),
+	CAPACITACAO ("Capacitação")
+	
+	final String value
+
+	GrauEnum(String value){
+		this.value = value
 	}
+	
+	@Override
+	String toString(){
+		value
+	}
+	
+	String getKey() {
+		name()
+	}
+	
+
 }
