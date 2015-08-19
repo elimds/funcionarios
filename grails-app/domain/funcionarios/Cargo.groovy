@@ -5,6 +5,10 @@ class Cargo {
 	String classe
 	static hasMany = [funcionarios:Funcionario]
 	
+	String toString(){
+		this.nome
+	}
+	
     static constraints = {
     }
 }

@@ -5,14 +5,14 @@ class Funcionario {
 	String cpf
 	Date dataNascimento
 	EstadoCivilEnum estadoCivil
-	String Naturalidade
-	SexoEnum Sexo
+	String naturalidade
+	SexoEnum sexo
 	String pis
 	String identidade
 	String tituloEleitor
 	Integer matricula
 	EscolaridadeEnum escolaridade
-	Integer lattes
+	String lattes
 	Cargo cargo
 	RegimeJuridicoEnum regimeJuridico
 	Departamento lotacao
@@ -23,9 +23,13 @@ class Funcionario {
 	Integer banco
 	String nomeBanco
 
-	static hasOne = [chefia:Departamento]
+	//static hasOne = [chefia:Departamento]
 	static belongsTo = [cargo:Cargo, departamento:Departamento]
 	static hasMany = [enderecos:Endereco, contatos:Contato, historicosFuncional:HistoricoFuncional, titulacoes:FuncionarioTitulacao, dependentes: Dependente]
+	
+	String toString(){
+		this.nome
+	}
 	
     static constraints = {
     }

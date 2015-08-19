@@ -10,4 +10,9 @@ class Titulacao {
 
     static constraints = {
     }
+	
+	String toString(){
+		this.descricao
+	}
+
 }

@@ -8,4 +8,9 @@ class Estado {
 
     static constraints = {
     }
+	
+	String toString(){
+		this.nome
+	}
+
 }

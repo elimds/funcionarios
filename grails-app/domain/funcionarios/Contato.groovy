@@ -1,7 +1,7 @@
 package funcionarios
 
 class Contato {
-	Enum tipo
+	TipoContatoEnum tipo
 	String valor
 	Funcionario funcionario
 
@@ -9,4 +9,9 @@ class Contato {
 
     static constraints = {
     }
+	
+	String toString(){
+		this.valor
+	}
+
 }

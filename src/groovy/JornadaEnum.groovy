@@ -1,6 +1,6 @@
 public enum JornadaEnum {
-	QUARENTAHORAS('40 horas'),
-	VINTEHORAS('20 horas'),
+	QUARENTA_HORAS('40 horas'),
+	VINTE_HORAS('20 horas'),
 	String id
 
 	JornadaEnum(String id){

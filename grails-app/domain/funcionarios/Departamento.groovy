@@ -14,4 +14,9 @@ class Departamento {
 
     static constraints = {
     }
+	
+	String toString(){
+		this.nome
+	}
+
 }

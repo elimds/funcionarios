@@ -14,4 +14,5 @@ class Endereco {
 
     static constraints = {
     }
+	
 }
