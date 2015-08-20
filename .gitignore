@@ -23,4 +23,4 @@ web-app/WEB-INF/tld/fmt.tld
 /target-eclipse/
 *.h2.db                                                                                            
 *.lock.db
-*.trace.db  
+*.trace.db
