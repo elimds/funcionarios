@@ -23,7 +23,6 @@
 	</div>
 	<fieldset class="buttons">
 		<input type="submit" class="save" value="Adicionar" name="btnSalvar" value="Salvar" />
-		<a href="#"  onclick="cancelar();">Cancelar</a>
 	</fieldset>
 
 </g:formRemote>

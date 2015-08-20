@@ -55,6 +55,13 @@ class FuncionarioController {
 		render(template: "/funcionario/listaContatos", model: [funcionarioInstance: funcionario])
 
 	}
+	
+	@Transactional
+	def excluirContato(){
+		Contato contato = Contato.get(params.id)
+		contato.delete(flush:true)
+		render("Registro excluido com sucesso!")
+	}
 
     @Transactional
     def update(Funcionario funcionarioInstance) {
@@ -82,28 +89,20 @@ class FuncionarioController {
 	@Transactional
 	def adicionarContato(){
 		Contato contato = new Contato()
-		println(params)
 		contato.funcionario = Funcionario.get(params.funcionario.id) 
 		contato.tipo = params.tipo
 		contato.valor = params.valor
-		
 		contato.save(flush:true)
-		
-		println contato
-		
 		render ('Contato salvo com sucesso!')
 	}
 
     @Transactional
     def delete(Funcionario funcionarioInstance) {
-
         if (funcionarioInstance == null) {
             notFound()
             return
         }
-
         funcionarioInstance.delete flush:true
-
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Funcionario.label', default: 'Funcionario'), funcionarioInstance.id])
