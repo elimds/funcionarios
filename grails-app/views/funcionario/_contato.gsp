@@ -10,7 +10,7 @@
 			<g:message code="contato.tipo.label" default="Tipo" />
 			<span class="required-indicator">*</span>
 		</label>
-		<g:select name="tipo" from="${funcionarios.TipoContatoEnum?.values()}" keys="${funcionarios.TipoContatoEnum.values()*.name()}" optionValue="id" required="" value="${contatoInstance?.tipo?.name()}" />
+		<g:select name="tipo" from="${funcionarios.TipoContatoEnum?.values()}" optionValue="id" keys="${funcionarios.TipoContatoEnum?.values()*.name()}" required="" value="${contatoInstance?.tipo?.name()}" />
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: contatoInstance, field: 'valor', 'error')} required">
@@ -27,4 +27,11 @@
 	</fieldset>
 
 </g:formRemote>
+<script type="text/javascript">
+	function carregarListaContatos(){
+		<g:remoteFunction controller="funcionario" action="listaContatos" id="${funcionarioInstance?.id}" update="contatoList" />
+		cancelar();
+	}
+</script>	
+
 

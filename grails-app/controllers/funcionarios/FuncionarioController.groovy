@@ -49,6 +49,12 @@ class FuncionarioController {
     def edit(Funcionario funcionarioInstance) {
         respond funcionarioInstance
     }
+	
+	def listaContatos(){
+		Funcionario funcionario = Funcionario.get(params?.id) 
+		render(template: "/funcionario/listaContatos", model: [funcionarioInstance: funcionario])
+
+	}
 
     @Transactional
     def update(Funcionario funcionarioInstance) {
@@ -75,7 +81,17 @@ class FuncionarioController {
 	
 	@Transactional
 	def adicionarContato(){
-	
+		Contato contato = new Contato()
+		println(params)
+		contato.funcionario = Funcionario.get(params.funcionario.id) 
+		contato.tipo = params.tipo
+		contato.valor = params.valor
+		
+		contato.save(flush:true)
+		
+		println contato
+		
+		render ('Contato salvo com sucesso!')
 	}
 
     @Transactional

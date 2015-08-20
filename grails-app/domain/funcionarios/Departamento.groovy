@@ -14,7 +14,7 @@ class Departamento {
 
     static constraints = {
 		chefe(nullable:true, blank:true)
-		email(nullable:true, blank:true, email:true)
+		email(nullable:true, blank:true)
 		ramal(nullable:true, blank:true)
     }
 	

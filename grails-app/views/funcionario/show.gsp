@@ -45,12 +45,20 @@
 				</g:if>
 			
 			</ol>
+			
+			<!--  formContato agrupo o código HTML para tratar os contatos do Funcionário  -->
 			<div id="formContato" style="border: 1px solid;">
 				<h1>Contatos</h1>
 				<div id="dvMensagem" style="text-align:center;"></div>
-				<g:render template="contato" />
-				<g:render template="listaContatos" />
+				<section id="contatoCreate">
+					<g:render template="contato" />
+				</section>
+				<section id="contatoList">
+					<g:render template="listaContatos" />
+				</section>
 			</div>
+			<!-- FIM do formContato -->
+			
 			<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${funcionarioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

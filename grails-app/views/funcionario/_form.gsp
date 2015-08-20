@@ -217,20 +217,6 @@
 	</ul>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: funcionarioInstance, field: 'historicosFuncional', 'error')} ">
-	<label for="historicosFuncional">
-		<g:message code="funcionario.historicosFuncional.label" default="Historicos Funcional" />
-	</label>
-	<ul class="one-to-many">
-	<g:each in="${funcionarioInstance?.historicosFuncional?}" var="h">
-	    <li><g:link controller="historicoFuncional" action="show" id="${h.id}">${h?.encodeAsHTML()}</g:link></li>
-	</g:each>
-	<li class="add">
-	<g:link controller="historicoFuncional" action="create" params="['funcionario.id': funcionarioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'historicoFuncional.label', default: 'HistoricoFuncional')])}</g:link>
-	</li>
-	</ul>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: funcionarioInstance, field: 'titulacoes', 'error')} ">
 	<label for="titulacoes">
 		<g:message code="funcionario.titulacoes.label" default="Titulacoes" />
