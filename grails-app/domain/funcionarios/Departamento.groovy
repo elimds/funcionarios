@@ -13,6 +13,9 @@ class Departamento {
 	static hasMany = [historicos:HistoricoFuncional, funcionarios:Funcionario]
 
     static constraints = {
+		chefe(nullable:true, blank:true)
+		email(nullable:true, blank:true, email:true)
+		ramal(nullable:true, blank:true)
     }
 	
 	String toString(){

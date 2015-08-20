@@ -39,7 +39,7 @@ class FuncionarioController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'funcionario.label', default: 'Funcionario'), funcionarioInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'funcionario.label', default: 'Funcionario'), funcionarioInstance.nome])
                 redirect funcionarioInstance
             }
             '*' { respond funcionarioInstance, [status: CREATED] }
@@ -75,27 +75,7 @@ class FuncionarioController {
 	
 	@Transactional
 	def adicionarContato(){
-		Contato contato
-		
-		if (params?.funcionario.id){
-			departamento = Departamento.get(params.id)	
-		} else {
-			departamento = new Departamento()
-		}
-		departamento.nome = params.nome
-		departamento.sigla = params.sigla
-		departamento.email = params.email
-		departamento.ramal = params.ramal
-		departamento.chefe = params.chefe
-		
-		departamento.validate()
-		if (!departamento.hasErrors()){
-			departamento.save(flush:true)
-			render ('Departamento salvo com sucesso!')
-		} else {
-			render ('Erro ao salvar este departamento.')
-		}
-		
+	
 	}
 
     @Transactional

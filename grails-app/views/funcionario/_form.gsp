@@ -12,7 +12,7 @@
 		<g:message code="funcionario.sexo.label" default="Sexo" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select name="sexo" from="${funcionarios.SexoEnum?.values()}" keys="${funcionarios.SexoEnum.values()*.name()}" optionValue="id" required="" value="${funcionarioInstance?.sexo?.name()}" />
+	<g:select name="sexo" from="${funcionarios.SexoEnum?.values()}" keys="${funcionarios.SexoEnum?.values()*.name()}" optionValue="id" required="" value="${funcionarioInstance?.sexo?.name()}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: funcionarioInstance, field: 'dataNascimento', 'error')} required">

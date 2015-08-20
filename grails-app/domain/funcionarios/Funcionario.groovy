@@ -32,5 +32,9 @@ class Funcionario {
 	}
 	
     static constraints = {
+		pis(nullable:true, blank:true)
+		lattes(nullable:true, blank:true, url: true)
+		cpf(cpf:true)
+		tituloEleitor(nullable:true, blank:true)
     }
 }
