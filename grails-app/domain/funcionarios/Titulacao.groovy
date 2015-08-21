@@ -5,8 +5,9 @@ class Titulacao {
 	GrauEnum grau
 	Integer cargaHoraria
 	String instituicao
+	Funcionario funcionario
 
-	static hasMany = [funcionarios:FuncionarioTitulacao]
+	static belongsTo = [funcionario:Funcionario]
 
     static constraints = {
     }

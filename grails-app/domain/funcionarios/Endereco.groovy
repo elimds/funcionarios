@@ -13,6 +13,8 @@ class Endereco {
 	static belongsTo = [funcionario:Funcionario]
 
     static constraints = {
+    	numero (nullable:true, blank:true)
+		complemento (nullable:true, blank:true)
     }
 	
 }
