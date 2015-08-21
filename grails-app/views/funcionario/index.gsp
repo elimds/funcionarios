@@ -3,59 +3,55 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="avocado">
 		<g:set var="entityName" value="${message(code: 'funcionario.label', default: 'Funcionario')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-funcionario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 		<div id="list-funcionario" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<table>
-			<thead>
-					<tr>
-					
-						<g:sortableColumn property="matricula" title="${message(code: 'funcionario.matricula.label', default: 'Matrícula')}" />
-					
-						<th><g:message code="funcionario.cargo.nome" default="Cargo" /></th>
-					
-						<g:sortableColumn property="departamento.nome" title="${message(code: 'funcionario.departamento.label', default: 'Departamento')}" />
-					
-						<g:sortableColumn property="cpf" title="${message(code: 'funcionario.cpf.label', default: 'Cpf')}" />
-					
-						<g:sortableColumn property="dataNascimento" title="${message(code: 'funcionario.dataNascimento.label', default: 'Data Nascimento')}" />
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${funcionarioInstanceList}" status="i" var="funcionarioInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${funcionarioInstance.id}">${fieldValue(bean: funcionarioInstance, field: "matricula")}</g:link></td>
-					
-						<td>${fieldValue(bean: funcionarioInstance, field: "cargo.nome")}</td>
-					
-						<td>${fieldValue(bean: funcionarioInstance, field: "departamento.nome")}</td>
-					
-						<td>${fieldValue(bean: funcionarioInstance, field: "cpf")}</td>
-					
-						<td><g:formatDate date="${funcionarioInstance.dataNascimento}" /></td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${funcionarioInstanceCount ?: 0}" />
+			<div class="row-fluid">
+				<div class="span12">
+					<g:if test="${flash.message}">
+						<div id="dvMensagem" class="message alert" role="status" style="display: block;">${flash.message}</div>
+					</g:if>
+					<div class="link-add">
+						<g:link class="create" action="create"><i class="icon-plus"></i> Novo Funcionário</g:link>
+					</div>
+					<div class="top-bar">
+						<h3><i class="icon-list"></i> Funcionários</h3>
+					</div>
+					<div class="well no-padding">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Matrícula</th>
+									<th>Cargo</th>
+									<th>Departamento</th>
+									<th>CPF</th>
+									<th>Data de Nascimento</th>
+									<th>Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<g:each in="${funcionarioInstanceList}" var="funcionarioInstance">
+									<tr>
+										<td>${funcionarioInstance?.id}</td>
+										<td>${funcionarioInstance?.cargo.nome}</td>
+										<td>${funcionarioInstance?.departamento.nome}</td>
+										<td>${funcionarioInstance?.cpf}</td>
+										<td>${funcionarioInstance?.dataNascimento}</td>
+										<td>
+											<nav>
+												<g:link class="edit" action="edit" id="${funcionarioInstance}.id" resource="${funcionarioInstance}"><i class="icon-edit-sign icon-2x icon-black"></i></g:link>&nbsp;&nbsp;
+												<g:link class="delete" action="delete" id="${funcionarioInstance}.id" resource="${funcionarioInstance}" before="if(!confirm('Você tem certeza que deseja excluir este registro?')) return false" title="Excluir"><i class="icon-edit-sign icon-2x icon-black"></i></g:link>
+											</nav>
+										</td>
+									</tr>
+								</g:each>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
