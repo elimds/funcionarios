@@ -23,9 +23,8 @@
 	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'complemento', 'error')} required">
 		<label for="complemento">
 			<g:message code="endereco.complemento.label" default="Complemento" />
-			<span class="required-indicator">*</span>
 		</label>
-		<g:textField name="complemento" required="" value="${enderecoInstance?.complemento}"/>
+		<g:textField name="complemento" value="${enderecoInstance?.complemento}"/>
 	</div>
 	
 	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'bairro', 'error')} required">
@@ -68,9 +67,8 @@
 	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'cep', 'error')} required">
 		<label for="cep">
 			<g:message code="endereco.cep.label" default="Cep" />
-			<span class="required-indicator">*</span>
 		</label>
-		<g:textField name="cep" required="" value="${enderecoInstance?.cep}"/>
+		<g:textField name="cep" value="${enderecoInstance?.cep}"/>
 	</div>
 	<fieldset class="buttons">
 		<input type="submit" class="save" value="${enderecoInstance?.id ? 'Atualizar' : 'Adicionar' }" name="btnSalvar" value="Salvar" />
