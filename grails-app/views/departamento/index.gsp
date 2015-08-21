@@ -3,23 +3,28 @@
 <head>
 <meta charset="utf-8">
 	<title>Cadastro de Departamentos</title>
-	<meta name="layout" content="main">
+	<meta name="layout" content="avocado">
 	<g:set var="entityName" value="${message(code: 'departamento.label', default: 'Departamento')}" />
 	<title><g:message code="default.list.label" args="[entityName]" /></title>
 	<g:javascript library="jquery"></g:javascript>
 </head>
 <body>
 	<main id="departamentoPage">
-		<div id="dvMensagem" style="text-align:center;"></div>
-		<section id="departamentoCreation" class="not">
-		</section>
-		<nav class="bottom">
-			<g:remoteLink controller="departamento" action="novo" update="departamentoCreation">Novo Departamento</g:remoteLink>
-		</nav>
-		
-		<section id="departamentoList">
-			<g:render template="list" model="${[departamentos: departamentos] }"></g:render>
-		</section>
+		<div class="row-fluid">
+			<div class="span12">
+				<div id="dvMensagem" class="alert"></div>
+				<section id="departamentoCreation" class="not"></section>
+				<nav class="bottom">
+					<div class="link-add">
+						<g:remoteLink controller="departamento" action="novo" update="departamentoCreation"><i class="icon-plus"></i> Novo Departamento</g:remoteLink>
+					</div>
+				</nav>
+				
+				<section id="departamentoList">
+					<g:render template="list" model="${[departamentos: departamentos] }"></g:render>
+				</section>
+			</div>
+		</div>
 	</main>
 <script type="text/javascript">
 	function cancelar(){

@@ -58,6 +58,45 @@
 				</section>
 			</div>
 			<!-- FIM do formContato -->
+
+			<!--  formDependente agrupo o código HTML para tratar os dependentes do Funcionário  -->
+			<div id="formDependente" style="border: 1px solid;">
+				<h1>Dependente</h1>
+				<div id="dvMensagemDependente" style="text-align:center;"></div>
+				<section id="dependenteCreate">
+					<g:render template="dependente" />
+				</section>
+				<section id="dependenteList">
+					<g:render template="listaDependentes" />
+				</section>
+			</div>
+			<!-- FIM do formDependente -->
+
+			<!--  formTitulacao agrupo o código HTML para tratar as titulações do Funcionário  -->
+			<div id="formTitulacao" style="border: 1px solid;">
+				<h1>Titulações</h1>
+				<div id="dvMensagemTitulacao" style="text-align:center;"></div>
+				<section id="titulacaoCreate">
+					<g:render template="titulacao" />
+				</section>
+				<section id="titulacaoList">
+					<g:render template="listaTitulacoes" />
+				</section>
+			</div>
+			<!-- FIM do formTitulacao -->
+			
+			<!--  formEndereco agrupa o código HTML para tratar os endereços do Funcionário  -->
+			<div id="formEndereco" style="border: 1px solid;">
+				<h1>Endereços</h1>
+				<div id="dvMensagemEndereco" style="text-align:center;"></div>
+				<section id="enderecoCreate">
+					<g:render template="endereco" />
+				</section>
+				<section id="enderecoList">
+					<g:render template="listaEnderecos" />
+				</section>
+			</div>
+			<!-- FIM do formContato -->
 			
 			<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

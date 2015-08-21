@@ -12,7 +12,7 @@ stacktrace.log
 /*DB.*
 /cobertura.ser
 .DS_Store
-/target/
+/target/*
 /plugins
 web-app/WEB-INF/tld/c.tld
 web-app/WEB-INF/tld/fmt.tld
@@ -20,7 +20,8 @@ web-app/WEB-INF/tld/fmt.tld
 /web-app/plugins
 /web-app/WEB-INF/classes
 /.link_to_grails_plugins/
-/target-eclipse/
+/target-eclipse/*
 *.h2.db                                                                                            
 *.lock.db
-*.trace.db  
+*.trace.db
+stacktrace.log
