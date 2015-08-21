@@ -3,6 +3,16 @@ package funcionarios
 import javax.transaction.Transactional;
 
 class DepartamentoController {
+
+    def beforeInterceptor = [action:this.&auth, except:["index", "list", "show"]]
+
+    def auth() {
+      if(session.user && session.user.login != "admin") {
+        flash.message = "Desculpe, você não tem permissão para realizar esta ação. =("
+        redirect(controller:"funcionario", action:"index")
+        return false
+      }
+    }	
 	
 	static allowedMethods = [salvar: "POST", excluir: "DELETE"]
 	
