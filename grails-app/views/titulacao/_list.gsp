@@ -1,22 +1,18 @@
-<table id="tblTitulacoes">
-		<colgroup>
-			<col width="30%">
-			<col width="13%">
-			<col width="12%">
-			<col width="30%">
-			<col width="15%">
-		</colgroup>
-	<thead>
-		<tr>
-			<th>Descrição</th>
-			<th>Grau</th>
-			<th>Carga Horária</th>
-			<th>Instituição</th>
-			<th>Ações</th>
-		</tr>
-	</thead>
-	<tbody>
-		<g:if test="${titulacoes?.size() >0 }">
+<div class="top-bar">
+	<h3><i class="icon-list"></i> Departamentos</h3>
+</div>
+<div class="well no-padding">
+	<table id="tblTitulacoes" class="data-table">
+		<thead>
+			<tr>
+				<th>Descrição</th>
+				<th>Grau</th>
+				<th>Carga Horária</th>
+				<th>Instituição</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
 			<g:each var="titulacao" in="${titulacoes}">
 			<tr>
 				<td>${titulacao?.descricao}</td>
@@ -26,17 +22,14 @@
 				<td>
 					<nav>
 						<g:remoteLink controller="titulacao" action="editar" id="${titulacao?.id }" 
-								update="titulacaoCreation" >Editar</g:remoteLink>
+								update="titulacaoCreation" ><i class="icon-edit-sign icon-2x icon-black"></i></g:remoteLink>&nbsp;&nbsp;
 						<g:remoteLink controller="titulacao" action="excluir" id="${titulacao?.id }" 
 								update="dvMensagem" before="if(!confirm('Você tem certeza que deseja excluir este registro?')) return false" 
-								onSuccess="carregarLista()" method="DELETE" >Excluir</g:remoteLink>
+								onSuccess="carregarLista()" method="DELETE" ><i class="icon-remove icon-2x icon-black"></i></g:remoteLink>
 					</nav>
 				</td>
 			</tr>
 			</g:each>
-		</g:if>
-		<g:else>
-			<tr><td colspan="4"><p>Nenhum registro na tabela</p></td></tr>
-		</g:else>
-	</tbody>
-</table>
+		</tbody>
+	</table>
+</div>

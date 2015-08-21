@@ -3,23 +3,28 @@
 <head>
 <meta charset="utf-8">
 	<title>Cadastro de Titulação</title>
-	<meta name="layout" content="main">
+	<meta name="layout" content="avocado">
 	<g:set var="entityName" value="${message(code: 'titulacao.label', default: 'Titulação')}" />
 	<title><g:message code="default.list.label" args="[entityName]" /></title>
 	<g:javascript library="jquery"></g:javascript>
 </head>
 <body>
 	<main id="titulacaoPage">
-		<div id="dvMensagem" style="text-align:center;"></div>
-		<section id="titulacaoCreation" class="not">
-		</section>
-		<nav class="bottom">
-			<g:remoteLink controller="titulacao" action="novo" update="titulacaoCreation">Nova Titulação</g:remoteLink>
-		</nav>
-		
-		<section id="titulacaoList">
-			<g:render template="list" model="${[titulacoes: titulacoes] }"></g:render>
-		</section>
+		<div class="row-fluid">
+			<div class="span12">
+				<div id="dvMensagem"></div>
+				<section id="titulacaoCreation" class="not"></section>
+				<nav class="bottom">
+					<div class="link-add">
+						<g:remoteLink controller="titulacao" action="novo" update="titulacaoCreation"><i class="icon-plus"></i> Nova Titulação</g:remoteLink>
+					</div>
+				</nav>
+				
+				<section id="titulacaoList">
+					<g:render template="list" model="${[titulacoes: titulacoes] }"></g:render>
+				</section>
+			</div>
+		</div>
 	</main>
 <script type="text/javascript">
 	function cancelar(){
