@@ -8,6 +8,16 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class EstadoController {
 
+    def beforeInterceptor = [action:this.&auth, except:["index", "list", "show"]]
+
+    def auth() {
+      if(session.user != "admin") {
+        flash.message = "Desculpe, você não tem permissão para realizar esta ação. =("
+        redirect(controller:"funcionario", action:"index")
+        return false
+      }
+    }    
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {

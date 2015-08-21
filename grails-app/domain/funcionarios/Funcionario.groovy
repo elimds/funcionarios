@@ -22,6 +22,7 @@ class Funcionario {
 	String contaBancaria
 	Integer banco
 	String nomeBanco
+	User usuario
 
 	//static hasOne = [chefia:Departamento]
 	static belongsTo = [cargo:Cargo, departamento:Departamento]
