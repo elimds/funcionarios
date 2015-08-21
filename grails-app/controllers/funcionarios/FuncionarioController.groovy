@@ -34,7 +34,6 @@ class FuncionarioController {
             respond funcionarioInstance.errors, view:'create'
             return
         }
-
         funcionarioInstance.save flush:true
 
         request.withFormat {
@@ -53,9 +52,23 @@ class FuncionarioController {
 	def listaContatos(){
 		Funcionario funcionario = Funcionario.get(params?.id) 
 		render(template: "/funcionario/listaContatos", model: [funcionarioInstance: funcionario])
-
 	}
-	
+
+	@Transactional
+	def adicionarContato(){
+		Contato contato
+		if (params?.id){
+			contato = Contato.get(params.id)
+		} else {
+			contato = new Contato()
+		} 
+		contato.funcionario = Funcionario.get(params.funcionario.id) 
+		contato.tipo = params.tipo
+		contato.valor = params.valor
+		contato.save(flush:true)
+		render ('Contato salvo com sucesso!')
+	}
+
 	@Transactional
 	def excluirContato(){
 		Contato contato = Contato.get(params.id)
@@ -75,6 +88,52 @@ class FuncionarioController {
 
     }
 
+	// Endereço
+	def listaEnderecos(){
+		Funcionario funcionario = Funcionario.get(params?.id)
+		render(template: "/funcionario/listaEnderecos", model: [funcionarioInstance: funcionario])
+	}
+	
+	def editarEndereco(){
+		Endereco endereco = Endereco.get(params?.id)
+		def cidades = Cidade.findAllByEstado( endereco.estado)
+		render(template: "/funcionario/endereco", model: [enderecoInstance: endereco, cidadeList: cidades, funcionarioInstance: endereco.funcionario])
+	}
+
+	@Transactional
+	def adicionarEndereco(){
+		Endereco endereco
+		if (params?.id){
+			endereco = Endereco.get(params.id)
+		} else {
+			endereco = new Endereco()
+		}
+		endereco.funcionario = Funcionario.get(params.funcionario.id)
+		endereco.rua = params.rua
+		endereco.numero = params.numero.toInteger()
+		endereco.complemento = params.complemento
+		endereco.bairro = params.bairro
+		endereco.estado = Estado.get(params.estado.id.toInteger())
+		endereco.cidade = Cidade.get(params.cidade.id.toInteger())
+		endereco.cep = params.cep
+		endereco.save(flush:true)
+		render ('Endereço salvo com sucesso!')
+	}
+
+	@Transactional
+	def excluirEndereco(){
+		Endereco endereco = Endereco.get(params.id)
+		endereco.delete(flush:true)
+		render("Registro excluido com sucesso!")
+	}
+
+	def optionsCidade() {
+		def estado = params.estado ?: 1
+//		println "Estado: <<< ${estado} >>>"
+		def cidades = Cidade.findAllByEstado( Estado.get(estado))
+		render(template:"optionsCidade", model: [ cidadeList: cidades ])
+	}
+	
     @Transactional
     def update(Funcionario funcionarioInstance) {
         if (funcionarioInstance == null) {
@@ -98,16 +157,6 @@ class FuncionarioController {
         }
     }
 	
-	@Transactional
-	def adicionarContato(){
-		Contato contato = new Contato()
-		contato.funcionario = Funcionario.get(params.funcionario.id) 
-		contato.tipo = params.tipo
-		contato.valor = params.valor
-		contato.save(flush:true)
-		render ('Contato salvo com sucesso!')
-	}
-
     @Transactional
     def adicionarDependente(){
         Dependente dependente = new Dependente()
