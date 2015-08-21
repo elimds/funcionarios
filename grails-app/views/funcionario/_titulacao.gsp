@@ -1,7 +1,7 @@
 	<%@ page import="funcionarios.Titulacao" %>
 
-	<g:formRemote name="titulacaoForm" url="[controller: 'funcionario', action: 'adicionarTitulacao']" 
-	update="dvMensagemTitulacao" onSuccess="carregarListaTitulacoes()" method="POST" >
+	<g:formRemote id="titulacaoForm" name="titulacaoForm" url="[controller: 'funcionario', action: 'adicionarTitulacao']" 
+	update="dvMensagemTitulacao" onSuccess="carregarListaTitulacoes();" method="POST" >
 
 	<g:hiddenField id="funcionario" name="funcionario.id" value="${funcionarioInstance?.id}" />
 	<g:hiddenField id="titulacaoId" name="id" value="${titulacaoInstance?.id }"/>
@@ -28,7 +28,10 @@
 			<g:message code="titulacao.grau.label" default="Grau" />
 			<span class="required-indicator">*</span>
 		</label>
-		<g:select name="grau" from="${funcionarios.GrauEnum?.values()}" keys="${funcionarios.GrauEnum.values()*.name()}" required="" value="${titulacaoInstance?.grau?.name()}" />
+		<g:select name="grau" from="${funcionarios.GrauEnum?.values()}" 
+				keys="${funcionarios.GrauEnum.values()*.name()}" required="" 
+				value="${titulacaoInstance?.grau?.name()}"
+				noSelection="${['null':'Escolha uma opção...']}" />
 	</div>
 
 	<div class="fieldcontain ${hasErrors(bean: titulacaoInstance, field: 'instituicao', 'error')} required">
@@ -40,14 +43,21 @@
 	</div>
 
 	<fieldset class="buttons">
-		<input type="submit" class="save" value="Adicionar" name="btnSalvar" value="Salvar" />
-		<a href="#"  onclick="cancelar();">Cancelar</a>
+		<input type="submit" class="save" value="${titulacaoInstance?.id ? "Atualizar" : "Adicionar" }" name="btnSalvar" value="Salvar" />
+		<a href="#"  onclick="limparFormTitulacao();">Cancelar</a>
 	</fieldset>
 	</g:formRemote>
 	<script type="text/javascript">
 		function carregarListaTitulacoes(){
 			<g:remoteFunction controller="funcionario" action="listaTitulacoes" id="${funcionarioInstance?.id}" update="titulacaoList" />
-			//cancelar();
+			limparFormTitulacao();
+		}
+		function limparFormTitulacao(){
+			$('#titulacaoForm').find('input:not(:submit, #funcionario)').each(function(){
+			  	$(this).val("");
+		  	});
+		  	$('#titulacaoForm .save').val("Adicionar");
+		  	$('#grau').val("null");
 		}
 	</script>	
 

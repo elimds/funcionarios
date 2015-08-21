@@ -4,7 +4,7 @@
 			<col width="15%">
 			<col width="15%">
 			<col width="15%">
-			<col width="10%">
+			<col width="15%">
 		</colgroup>
 	<thead>
 		<tr>
@@ -12,7 +12,7 @@
 			<th>Data de Nascimento</th>
 			<th>Identidade</th>
 			<th>Cpf</th>
-			<th>Ações</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,11 +25,11 @@
 				<td>${dependente?.cpf}</td>
 				<td>
 					<nav>
-						<g:remoteLink controller="dependente" action="editar" id="${dependente.id }" 
-								update="dependenteCreation" >Editar</g:remoteLink>
-						<g:remoteLink controller="dependente" action="excluir" id="${dependente.id }" 
+						<g:remoteLink controller="funcionario" action="editarDependente" id="${dependente.id }" 
+								update="dependenteCreate">Editar</g:remoteLink>
+						<g:remoteLink controller="funcionario" action="excluirDependente" id="${dependente.id }" 
 								update="dvMensagemDependente" before="if(!confirm('Você tem certeza que deseja excluir este registro?')) return false" 
-								onSuccess="carregarListaDependentes()" method="DELETE" >Excluir</g:remoteLink>
+								onSuccess="carregarListaDependentes()" method="DELETE">Excluir</g:remoteLink>
 					</nav>
 				</td>
 			</tr>

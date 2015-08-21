@@ -12,7 +12,7 @@
 			<th>Grau</th>
 			<th>Carga Horária</th>
 			<th>Instituição</th>
-			<th>Ações</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,11 +25,11 @@
 				<td>${titulacao?.instituicao}</td>
 				<td>
 					<nav>
-						<g:remoteLink controller="titulacao" action="editar" id="${titulacao.id }" 
-								update="titulacaoCreation" >Editar</g:remoteLink>
-						<g:remoteLink controller="titulacao" action="excluir" id="${titulacao.id }" 
+						<g:remoteLink controller="funcionario" action="editarTitulacao" id="${titulacao?.id }" 
+								update="titulacaoCreate">Editar</g:remoteLink>
+						<g:remoteLink controller="funcionario" action="excluirTitulacao" id="${titulacao.id }" 
 								update="dvMensagemTitulacao" before="if(!confirm('Você tem certeza que deseja excluir este registro?')) return false" 
-								onSuccess="carregarListaTitulcacao()" method="DELETE" >Excluir</g:remoteLink>
+								onSuccess="carregarListaTitulacoes()" method="DELETE" >Excluir</g:remoteLink>
 					</nav>
 				</td>
 			</tr>

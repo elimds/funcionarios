@@ -92,13 +92,11 @@ class FuncionarioController {
     def listaDependentes(){
         Funcionario funcionario = Funcionario.get(params?.id) 
         render(template: "/funcionario/listaDependentes", model: [funcionarioInstance: funcionario])
-
     }
 
     def listaTitulacoes(){
         Funcionario funcionario = Funcionario.get(params?.id) 
         render(template: "/funcionario/listaTitulacoes", model: [funcionarioInstance: funcionario])
-
     }
 
 	// Endereço
@@ -111,6 +109,16 @@ class FuncionarioController {
 		Endereco endereco = Endereco.get(params?.id)
 		def cidades = Cidade.findAllByEstado( endereco.estado)
 		render(template: "/funcionario/endereco", model: [enderecoInstance: endereco, cidadeList: cidades, funcionarioInstance: endereco.funcionario])
+	}
+	
+	def editarTitulacao(){
+		Titulacao titulacao = Titulacao.get(params?.id)
+		render(template: "/funcionario/titulacao", model: [titulacaoInstance: titulacao, funcionarioInstance: titulacao.funcionario])
+	}
+
+	def editarDependente(){
+		Dependente dependente = Dependente.get(params?.id)
+		render(template: "/funcionario/dependente", model: [dependenteInstance: dependente, funcionarioInstance: dependente.funcionario])
 	}
 
 	@Transactional
@@ -135,11 +143,25 @@ class FuncionarioController {
 
 	@Transactional
 	def excluirEndereco(){
-		Endereco endereco = Endereco.get(params.id)
+		Endereco endereco = Endereco.get(params?.id)
 		endereco.delete(flush:true)
 		render("Registro excluido com sucesso!")
 	}
+	
+	@Transactional
+	def excluirTitulacao(){
+		Titulacao titulacao = Titulacao.get(params?.id)
+		titulacao.delete(flush:true)
+		render("Registro excluido com sucesso!")
+	}
 
+	@Transactional
+	def excluirDependente(){
+		Dependente dependente = Dependente.get(params?.id)
+		dependente.delete(flush:true)
+		render("Registro excluido com sucesso!")
+	}
+	
 	def optionsCidade() {
 		def estado = params.estado ?: 1
 //		println "Estado: <<< ${estado} >>>"
@@ -172,7 +194,12 @@ class FuncionarioController {
 	
     @Transactional
     def adicionarDependente(){
-        Dependente dependente = new Dependente()
+		Dependente dependente
+		if (params?.id){
+			dependente = Dependente.get(params.id)
+		} else {
+			dependente = new Dependente()
+		}
         dependente.funcionario = Funcionario.get(params.funcionario.id) 
         dependente.nome = params.nome
         dependente.dataNascimento = params.dataNascimento
@@ -186,16 +213,18 @@ class FuncionarioController {
 
     @Transactional
     def adicionarTitulacao(){
-        Titulacao titulacao = new Titulacao()
+		Titulacao titulacao
+		if (params?.id){
+			titulacao = Titulacao.get(params.id)
+		} else {
+			titulacao = new Titulacao()
+		}
         titulacao.funcionario = Funcionario.get(params.funcionario.id) 
         titulacao.descricao = params.descricao
         titulacao.grau = params.grau
         titulacao.cargaHoraria = params.cargaHoraria.toInteger()
 		titulacao.instituicao = params.instituicao
         titulacao.save(flush:true)
-        
-       // println contato
-        
         render ('Titulação salva com sucesso!')
     }
 

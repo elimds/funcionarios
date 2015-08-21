@@ -1,6 +1,6 @@
 <%@ page import="funcionarios.Dependente" %>
 
-<g:formRemote name="dependenteForm" url="[controller: 'funcionario', action: 'adicionarDependente']" 
+<g:formRemote id="dependenteForm" name="dependenteForm" url="[controller: 'funcionario', action: 'adicionarDependente']" 
 		update="dvMensagemDependente" onSuccess="carregarListaDependentes()" method="POST" >
 
 	<g:hiddenField id="funcionario" name="funcionario.id" value="${funcionarioInstance?.id}" />
@@ -42,7 +42,7 @@
 
 	</div>
 	<fieldset class="buttons">
-		<input type="submit" class="save" value="Adicionar" name="btnSalvar" value="Salvar" />
+		<input type="submit" class="save" value="${ dependenteInstance?.id ? "Atualizar" : "Adicionar" }" name="btnSalvar" value="Salvar" />
 		<a href="#"  onclick="cancelar();">Cancelar</a>
 	</fieldset>
 
@@ -50,6 +50,13 @@
 <script type="text/javascript">
 	function carregarListaDependentes(){
 		<g:remoteFunction controller="funcionario" action="listaDependentes" id="${funcionarioInstance?.id}" update="dependenteList" />
-		cancelar();
+		limparFormDependente();
 	}
+	function limparFormDependente(){
+		$('#dependenteForm').find('input:not(:submit, #funcionario)').each(function(){
+		  	$(this).val("");
+	  	});
+	  	$('#dependenteForm .save').val("Adicionar");
+	}
+	
 </script>	

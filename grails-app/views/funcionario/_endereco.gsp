@@ -80,9 +80,6 @@
 		cancelar();
 	}
 	function cancelar(){
-		//$('#enderecoForm').each (function(){
-		//  this.reset();
-		//});
 		$('#enderecoForm').find('input:not(:submit, #funcionario)').each(function () {
 		  	$(this).val("");
 	  	});
