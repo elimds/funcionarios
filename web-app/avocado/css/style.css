@@ -28,3 +28,8 @@
 i.icon-black {
     color: #666 !important;
 }
+
+#dvMensagem {
+	display: none;
+	text-align: center;
+}

@@ -21,6 +21,5 @@
 			<input type="submit" name="btnSalvar" value="Salvar" class="btn btn-primary" />
 			<a href="#" onclick="cancelar();" class="btn btn-danger">Cancelar</a>
 		</div>
-		<div class="clearfix"></div>
 	</div>
 </g:formRemote>

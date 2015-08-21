@@ -12,10 +12,8 @@
 	<main id="cargoPage">
 		<div class="row-fluid">
 			<div class="span12">
-				<div id="dvMensagem" class="alert" style="text-align:center; display: none;"></div>
-				<section id="cargoCreation" class="not">
-				</section>
-
+				<div id="dvMensagem" class="alert"></div>
+				<section id="cargoCreation" class="not"></section>
 				<nav class="bottom">
 					<div class="link-add">
 						<g:remoteLink controller="cargo" action="novo" update="cargoCreation"><i class="icon-plus"></i> Novo Cargo</g:remoteLink>
