@@ -1,6 +1,6 @@
 package funcionarios
 
-import com.bloomhealthco.jasypt.GormEncryptedStringType
+//import com.bloomhealthco.jasypt.GormEncryptedStringType
 
 class User {
   static constraints = {
