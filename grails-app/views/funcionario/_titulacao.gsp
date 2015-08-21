@@ -21,7 +21,6 @@
 			<span class="required-indicator">*</span>
 		</label>
 		<g:textField name="descricao" required="" value="${titulacaoInstance?.descricao}"/>
-
 	</div>
 
 	<div class="fieldcontain ${hasErrors(bean: titulacaoInstance, field: 'grau', 'error')} required">
@@ -30,7 +29,6 @@
 			<span class="required-indicator">*</span>
 		</label>
 		<g:select name="grau" from="${funcionarios.GrauEnum?.values()}" keys="${funcionarios.GrauEnum.values()*.name()}" required="" value="${titulacaoInstance?.grau?.name()}" />
-
 	</div>
 
 	<div class="fieldcontain ${hasErrors(bean: titulacaoInstance, field: 'instituicao', 'error')} required">
@@ -39,14 +37,12 @@
 			<span class="required-indicator">*</span>
 		</label>
 		<g:textField name="instituicao" required="" value="${titulacaoInstance?.instituicao}"/>
-
 	</div>
 
 	<fieldset class="buttons">
 		<input type="submit" class="save" value="Adicionar" name="btnSalvar" value="Salvar" />
 		<a href="#"  onclick="cancelar();">Cancelar</a>
 	</fieldset>
-
 	</g:formRemote>
 	<script type="text/javascript">
 		function carregarListaTitulacoes(){

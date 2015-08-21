@@ -35,6 +35,8 @@ class FuncionarioController {
 
     @Transactional
     def save(Funcionario funcionarioInstance) {
+		println "usuario logado: ${session.user.id}" 
+		funcionarioInstance.usuario = User.get(session.user.id)
         if (funcionarioInstance == null) {
             notFound()
             return
@@ -44,6 +46,7 @@ class FuncionarioController {
             respond funcionarioInstance.errors, view:'create'
             return
         }
+		
         funcionarioInstance.save flush:true
 
         request.withFormat {
@@ -170,7 +173,6 @@ class FuncionarioController {
     @Transactional
     def adicionarDependente(){
         Dependente dependente = new Dependente()
-        println(params)
         dependente.funcionario = Funcionario.get(params.funcionario.id) 
         dependente.nome = params.nome
         dependente.dataNascimento = params.dataNascimento
@@ -179,21 +181,17 @@ class FuncionarioController {
         
         dependente.save(flush:true)
         
-       // println contato
-        
         render ('Dependente salvo com sucesso!')
     }
 
     @Transactional
     def adicionarTitulacao(){
         Titulacao titulacao = new Titulacao()
-        println(params)
         titulacao.funcionario = Funcionario.get(params.funcionario.id) 
         titulacao.descricao = params.descricao
         titulacao.grau = params.grau
-        println params.cargaHoraria.toInteger()
         titulacao.cargaHoraria = params.cargaHoraria.toInteger()
-        
+		titulacao.instituicao = params.instituicao
         titulacao.save(flush:true)
         
        // println contato

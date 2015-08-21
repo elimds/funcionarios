@@ -25,7 +25,7 @@ class Funcionario {
 	User usuario
 
 	//static hasOne = [chefia:Departamento]
-	static belongsTo = [cargo:Cargo, departamento:Departamento]
+	static belongsTo = [cargo:Cargo, departamento:Departamento, usuario:User]
 	static hasMany = [enderecos:Endereco, contatos:Contato, historicosFuncional:HistoricoFuncional, titulacoes:Titulacao, dependentes: Dependente]
 	
 	String toString(){
