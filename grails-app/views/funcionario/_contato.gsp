@@ -32,5 +32,3 @@
 		cancelar();
 	}
 </script>	
-
-
