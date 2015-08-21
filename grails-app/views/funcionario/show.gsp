@@ -46,7 +46,7 @@
 			
 			</ol>
 			
-			<!--  formContato agrupo o código HTML para tratar os contatos do Funcionário  -->
+			<!--  formContato agrupa o código HTML para tratar os contatos do Funcionário  -->
 			<div id="formContato" style="border: 1px solid;">
 				<h1>Contatos</h1>
 				<div id="dvMensagem" style="text-align:center;"></div>
