@@ -1,58 +1,103 @@
 package funcionarios
 
-import javax.transaction.Transactional;
 
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class TitulacaoController {
-	static allowedMethods = [salvar: "POST", excluir: "DELETE"]
-	
-	def index() {
-		def lista = Titulacao.list()
-		render(view: "/titulacao/index", model: [titulacoes: lista])
-	}
-	
-	def novo(){
-		def novaTitulacao = new Titulacao()
-		render(template: "/titulacao/form", model: [titulacao: novaTitulacao])
-	}
-	
-	def lista(){
-		def lista = Titulacao.list()
-		render(template: "/titulacao/list", model: [titulacoes: lista])
-	}
-	
-	def editar(){
-		def titulacao = Titulacao.get(params.id)
-		render(template: "/titulacao/form", model: [titulacao: titulacao])
-	}
-	
-	@Transactional
-	def excluir(){
-		def titulacao = Titulacao.get(params.id)
-		titulacao.delete(flush:true)
-		render("Registro excluido com sucesso!")
-	}
-	
-	@Transactional
-	def salvar(){
-		Titulacao titulacao
-		
-		if (params?.id){
-			titulacao = Titulacao.get(params.id)
-		} else {
-			titulacao = new Titulacao()
-		}
-		titulacao.descricao = params.descricao
-		titulacao.grau = params.grau
-		titulacao.cargaHoraria = params.cargaHoraria.toInteger()
-		titulacao.instituicao = params.instituicao
-		
-		titulacao.validate()
-		if (!titulacao.hasErrors()){
-			titulacao.save(flush:true)
-			render ("Titulação salva com sucesso!")
-		} else {
-			render ("Erro ao salvar este registro... <br /> ${titulacao.errors}")
-		}
-	}
 
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Titulacao.list(params), model:[titulacaoInstanceCount: Titulacao.count()]
+    }
+
+    def show(Titulacao titulacaoInstance) {
+        respond titulacaoInstance
+    }
+
+    def create() {
+        respond new Titulacao(params)
+    }
+
+    @Transactional
+    def save(Titulacao titulacaoInstance) {
+        if (titulacaoInstance == null) {
+            notFound()
+            return
+        }
+
+        if (titulacaoInstance.hasErrors()) {
+            respond titulacaoInstance.errors, view:'create'
+            return
+        }
+
+        titulacaoInstance.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'titulacao.label', default: 'Titulacao'), titulacaoInstance.id])
+                redirect titulacaoInstance
+            }
+            '*' { respond titulacaoInstance, [status: CREATED] }
+        }
+    }
+
+    def edit(Titulacao titulacaoInstance) {
+        respond titulacaoInstance
+    }
+
+    @Transactional
+    def update(Titulacao titulacaoInstance) {
+        if (titulacaoInstance == null) {
+            notFound()
+            return
+        }
+
+        if (titulacaoInstance.hasErrors()) {
+            respond titulacaoInstance.errors, view:'edit'
+            return
+        }
+
+        titulacaoInstance.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Titulacao.label', default: 'Titulacao'), titulacaoInstance.id])
+                redirect titulacaoInstance
+            }
+            '*'{ respond titulacaoInstance, [status: OK] }
+        }
+    }
+
+    @Transactional
+    def delete(Titulacao titulacaoInstance) {
+
+        if (titulacaoInstance == null) {
+            notFound()
+            return
+        }
+
+        titulacaoInstance.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Titulacao.label', default: 'Titulacao'), titulacaoInstance.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
+    }
+
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'titulacao.label', default: 'Titulacao'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
+    }
 }

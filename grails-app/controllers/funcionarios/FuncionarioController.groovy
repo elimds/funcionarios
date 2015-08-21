@@ -76,6 +76,18 @@ class FuncionarioController {
 		render("Registro excluido com sucesso!")
 	}
 
+    def listaDependentes(){
+        Funcionario funcionario = Funcionario.get(params?.id) 
+        render(template: "/funcionario/listaDependentes", model: [funcionarioInstance: funcionario])
+
+    }
+
+    def listaTitulacoes(){
+        Funcionario funcionario = Funcionario.get(params?.id) 
+        render(template: "/funcionario/listaTitulacoes", model: [funcionarioInstance: funcionario])
+
+    }
+
 	// Endereço
 	def listaEnderecos(){
 		Funcionario funcionario = Funcionario.get(params?.id)
@@ -145,6 +157,40 @@ class FuncionarioController {
         }
     }
 	
+    @Transactional
+    def adicionarDependente(){
+        Dependente dependente = new Dependente()
+        println(params)
+        dependente.funcionario = Funcionario.get(params.funcionario.id) 
+        dependente.nome = params.nome
+        dependente.dataNascimento = params.dataNascimento
+        dependente.identidade = params.identidade
+        dependente.cpf = params.cpf
+        
+        dependente.save(flush:true)
+        
+       // println contato
+        
+        render ('Dependente salvo com sucesso!')
+    }
+
+    @Transactional
+    def adicionarTitulacao(){
+        Titulacao titulacao = new Titulacao()
+        println(params)
+        titulacao.funcionario = Funcionario.get(params.funcionario.id) 
+        titulacao.descricao = params.descricao
+        titulacao.grau = params.grau
+        println params.cargaHoraria.toInteger()
+        titulacao.cargaHoraria = params.cargaHoraria.toInteger()
+        
+        titulacao.save(flush:true)
+        
+       // println contato
+        
+        render ('Titulação salva com sucesso!')
+    }
+
     @Transactional
     def delete(Funcionario funcionarioInstance) {
         if (funcionarioInstance == null) {

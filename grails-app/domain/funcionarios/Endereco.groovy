@@ -13,7 +13,8 @@ class Endereco {
 	static belongsTo = [funcionario:Funcionario, cidade:Cidade, estado:Estado]
 
     static constraints = {
-		complemento(nullable:true, blank:true)
+    	numero (nullable:true, blank:true)
+		complemento (nullable:true, blank:true)
 		cep(nullable:true, blank:true)
     }
 	
