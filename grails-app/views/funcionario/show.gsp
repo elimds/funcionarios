@@ -59,6 +59,19 @@
 			</div>
 			<!-- FIM do formContato -->
 			
+			<!--  formEndereco agrupa o código HTML para tratar os endereços do Funcionário  -->
+			<div id="formEndereco" style="border: 1px solid;">
+				<h1>Endereços</h1>
+				<div id="dvMensagemEndereco" style="text-align:center;"></div>
+				<section id="enderecoCreate">
+					<g:render template="endereco" />
+				</section>
+				<section id="enderecoList">
+					<g:render template="listaEnderecos" />
+				</section>
+			</div>
+			<!-- FIM do formContato -->
+			
 			<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${funcionarioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
