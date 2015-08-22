@@ -1,5 +1,6 @@
 <%@ page import="funcionarios.Funcionario" %>
 <div class="well no-padding">
+	<g:hiddenField name="usuario.id" value="${session.user.id}" />
 	<div class="control-group span6 sem-margin-left ${hasErrors(bean: funcionarioInstance, field: 'nome', 'error')} required">
 		<label class="control-label" for="nome">Nome:</label>
 		<div class="controls">

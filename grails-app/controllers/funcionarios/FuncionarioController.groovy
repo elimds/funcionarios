@@ -36,7 +36,7 @@ class FuncionarioController {
     @Transactional
     def save(Funcionario funcionarioInstance) {
 		println "usuario logado: ${session.user.id}" 
-		funcionarioInstance.usuario = User.get(session.user.id)
+		//funcionarioInstance.usuario = User.get(session.user.id)
         if (funcionarioInstance == null) {
             notFound()
             return
