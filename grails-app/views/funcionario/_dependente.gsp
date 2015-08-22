@@ -1,51 +1,41 @@
 <%@ page import="funcionarios.Dependente" %>
 
-<g:formRemote id="dependenteForm" name="dependenteForm" url="[controller: 'funcionario', action: 'adicionarDependente']" 
-		update="dvMensagemDependente" onSuccess="carregarListaDependentes()" method="POST" >
-
-	<g:hiddenField id="funcionario" name="funcionario.id" value="${funcionarioInstance?.id}" />
-	<g:hiddenField id="dependenteId" name="id" value="${dependenteInstance?.id }"/>
-
-	<div class="fieldcontain ${hasErrors(bean: dependenteInstance, field: 'nome', 'error')} required">
-		<label for="nome">
-			<g:message code="dependente.nome.label" default="Nome" />
-			<span class="required-indicator">*</span>
-		</label>
-		<g:textField name="nome" required="" value="${dependenteInstance?.nome}"/>
-
+<g:formRemote id="dependenteForm" name="dependenteForm" url="[controller: 'funcionario', action: 'adicionarDependente']" update="dvMensagemDependente" onSuccess="carregarListaDependentes()" method="POST" class="form-horizontal">
+	<div class="top-bar">
+		<h3><i class="icon-plus"></i> Incluir Dependente</h3>
 	</div>
-
-	<div class="fieldcontain ${hasErrors(bean: dependenteInstance, field: 'dataNascimento', 'error')} required">
-		<label for="dataNascimento">
-			<g:message code="dependente.dataNascimento.label" default="Data Nascimento" />
-			<span class="required-indicator">*</span>
-		</label>
-		<g:datePicker name="dataNascimento" precision="day"  value="${dependenteInstance?.dataNascimento}"  />
-
+	<div class="well no-padding">
+		<g:hiddenField id="funcionario" name="funcionario.id" value="${funcionarioInstance?.id}" />
+		<g:hiddenField id="dependenteId" name="id" value="${dependenteInstance?.id }"/>
+		<div class="control-group span6 sem-margin-left ${hasErrors(bean: dependenteInstance, field: 'nome', 'error')} required">
+			<label class="control-label" for="nome">Nome:</label>
+			<div class="controls">
+				<g:textField name="nome" required="" value="${dependenteInstance?.nome}" class="span12" />
+			</div>
+		</div>
+		<div class="control-group span3 ${hasErrors(bean: dependenteInstance, field: 'identidade', 'error')} ">
+			<label class="control-label" for="identidade">Identidade:</label>
+			<div class="controls">
+				<g:textField name="identidade" value="${dependenteInstance?.identidade}" class="span12" />
+			</div>
+		</div>
+		<div class="control-group span3 ${hasErrors(bean: dependenteInstance, field: 'cpf', 'error')} required">
+			<label class="control-label" for="cpf">CPF:</label>
+			<div class="controls">
+				<g:textField name="cpf" required="" value="${dependenteInstance?.cpf}" class="span12" />
+			</div>
+		</div>
+		<div class="control-group span12 sem-margin-left ${hasErrors(bean: dependenteInstance, field: 'dataNascimento', 'error')} required">
+			<label class="control-label" for="dataNascimento">Data de Nascimento:</label>
+			<div class="controls">
+				<g:datePicker name="dataNascimento" precision="day"  value="${dependenteInstance?.dataNascimento}"  />
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="form-actions">
+			<input type="submit" class="btn btn-primary" value="${ dependenteInstance?.id ? "Atualizar" : "Adicionar" }" name="btnSalvar" value="Salvar" />
+		</div>
 	</div>
-
-	<div class="fieldcontain ${hasErrors(bean: dependenteInstance, field: 'identidade', 'error')} ">
-		<label for="identidade">
-			<g:message code="dependente.identidade.label" default="Identidade" />
-			
-		</label>
-		<g:textField name="identidade" value="${dependenteInstance?.identidade}"/>
-
-	</div>
-
-	<div class="fieldcontain ${hasErrors(bean: dependenteInstance, field: 'cpf', 'error')} required">
-		<label for="cpf">
-			<g:message code="dependente.cpf.label" default="Cpf" />
-			<span class="required-indicator">*</span>
-		</label>
-		<g:textField name="cpf" required="" value="${dependenteInstance?.cpf}"/>
-
-	</div>
-	<fieldset class="buttons">
-		<input type="submit" class="save" value="${ dependenteInstance?.id ? "Atualizar" : "Adicionar" }" name="btnSalvar" value="Salvar" />
-		<a href="#"  onclick="cancelar();">Cancelar</a>
-	</fieldset>
-
 </g:formRemote>
 <script type="text/javascript">
 	function carregarListaDependentes(){

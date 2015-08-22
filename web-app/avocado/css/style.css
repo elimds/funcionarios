@@ -29,7 +29,7 @@ i.icon-black {
     color: #666 !important;
 }
 
-#dvMensagem {
+div[id^='dvMensagem'] {
 	display: none;
 	text-align: center;
 }

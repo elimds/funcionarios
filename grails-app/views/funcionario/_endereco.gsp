@@ -1,78 +1,71 @@
 <%@ page import="funcionarios.Funcionario" %>
-<g:formRemote name="enderecoForm" id="enderecoForm" url="[controller: 'funcionario', action: 'adicionarEndereco']" 
-		update="dvMensagemEndereco" onSuccess="carregarListaEnderecos()" method="POST" >
-
-	<g:hiddenField id="funcionario" name="funcionario.id" value="${funcionarioInstance?.id}" />
-	<g:hiddenField id="enderecoId" name="id" value="${enderecoInstance?.id }"/>
-	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'rua', 'error')} required">
-		<label for="rua">
-			<g:message code="endereco.rua.label" default="Rua" />
-			<span class="required-indicator">*</span>
-		</label>
-		<g:textField name="rua" required="" value="${enderecoInstance?.rua}"/>
+<g:formRemote name="enderecoForm" id="enderecoForm" url="[controller: 'funcionario', action: 'adicionarEndereco']" update="dvMensagemEndereco" onSuccess="carregarListaEnderecos()" method="POST" class="form-horizontal">
+	<div class="top-bar">
+		<h3><i class="icon-plus"></i> Incluir Endereço</h3>
 	</div>
-	
-	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'numero', 'error')} required">
-		<label for="numero">
-			<g:message code="endereco.numero.label" default="Número" />
-			<span class="required-indicator">*</span>
-		</label>
-		<g:field name="numero" type="number" value="${enderecoInstance?.numero}" required=""/>
+	<div class="well no-padding">
+		<g:hiddenField id="funcionario" name="funcionario.id" value="${funcionarioInstance?.id}" />
+		<g:hiddenField id="enderecoId" name="id" value="${enderecoInstance?.id }"/>
+		<div class="control-group span5 sem-margin-left ${hasErrors(bean: enderecoInstance, field: 'rua', 'error')} required">
+			<label class="control-label" for="rua">Rua:</label>
+			<div class="controls">
+				<g:textField name="rua" required="" value="${enderecoInstance?.rua}" class="span12" />
+			</div>
+		</div>
+		<div class="control-group span3 ${hasErrors(bean: enderecoInstance, field: 'numero', 'error')} required">
+			<label class="control-label" for="numero">Número:</label>
+			<div class="controls">
+				<g:field name="numero" type="number" value="${enderecoInstance?.numero}" required="" class="span12" />
+			</div>
+		</div>
+		<div class="control-group span4 ${hasErrors(bean: enderecoInstance, field: 'complemento', 'error')} required">
+			<label class="control-label" for="complemento">Complemento:</label>
+			<div class="controls">
+				<g:textField name="complemento" value="${enderecoInstance?.complemento}" class="span12" />
+			</div>
+		</div>
+		<div class="control-group span6 sem-margin-left ${hasErrors(bean: enderecoInstance, field: 'bairro', 'error')} required">
+			<label class="control-label" for="bairro">Bairro:</label>
+			<div class="controls">
+				<g:textField name="bairro" required="" value="${enderecoInstance?.bairro}" class="span12" />
+			</div>
+		</div>
+		<div class="control-group span6 ${hasErrors(bean: enderecoInstance, field: 'estado', 'error')} required">
+			<label class="control-label" for="estado">Estado:</label>
+			<div class="controls">
+				<g:select id="estado" name="estado.id" from="${funcionarios.Estado.list()}" noSelection="${['null':'Escolha um Estado...']}" 
+						optionKey="id" required="" value="${enderecoInstance?.estado?.id}" 
+						class="many-to-one"
+						onchange="${ remoteFunction(controller: 'funcionario', action: 'optionsCidade', update:'cidade', params:'\'estado=\' + this.value' ) }" class="span12" />
+			</div>
+		</div>
+		<div class="control-group span6 sem-margin-left ${hasErrors(bean: enderecoInstance, field: 'cidade', 'error')} required">
+			<label class="control-label" for="cidade">Cidade:</label>
+			<div class="controls">
+				<select id="cidade" name="cidade.id" required="" class="many-to-one span12">
+					<g:if test="${enderecoInstance?.estado?.id }">
+						<g:render template="optionsCidade" model="${[cidadeList:  cidadeList]}" />
+						<script type="text/javascript">
+							jQuery("#cidade").val(${enderecoInstance?.cidade?.id});
+						</script>
+					</g:if>
+					<g:else>
+						<option>Escolha um Estado...</option>
+					</g:else>
+				</select>
+			</div>
+		</div>
+		<div class="control-group span6 ${hasErrors(bean: enderecoInstance, field: 'cep', 'error')} required">
+			<label class="control-label" for="cep">CEP:</label>
+			<div class="controls">
+				<g:textField name="cep" value="${enderecoInstance?.cep}" class="span12" />
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="form-actions">
+			<input type="submit" class="btn btn-primary" value="${enderecoInstance?.id ? 'Atualizar' : 'Adicionar' }" name="btnSalvar" value="Salvar" />
+		</div>
 	</div>
-	
-	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'complemento', 'error')} required">
-		<label for="complemento">
-			<g:message code="endereco.complemento.label" default="Complemento" />
-		</label>
-		<g:textField name="complemento" value="${enderecoInstance?.complemento}"/>
-	</div>
-	
-	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'bairro', 'error')} required">
-		<label for="bairro">
-			<g:message code="endereco.bairro.label" default="Bairro" />
-			<span class="required-indicator">*</span>
-		</label>
-		<g:textField name="bairro" required="" value="${enderecoInstance?.bairro}"/>
-	</div>
-	
-	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'estado', 'error')} required">
-		<label for="estado">
-			<g:message code="endereco.estado.label" default="Estado" />
-			<span class="required-indicator">*</span>
-		</label>
-		<g:select id="estado" name="estado.id" from="${funcionarios.Estado.list()}" noSelection="${['null':'Escolha um Estado...']}" 
-				optionKey="id" required="" value="${enderecoInstance?.estado?.id}" 
-				class="many-to-one"
-				onchange="${ remoteFunction(controller: 'funcionario', action: 'optionsCidade', update:'cidade', params:'\'estado=\' + this.value' ) }" />
-	</div>
-	
-	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'cidade', 'error')} required">
-		<label for="cidade">
-			<g:message code="endereco.cidade.label" default="Cidade" />
-			<span class="required-indicator">*</span>
-		</label>
-		<select id="cidade" name="cidade.id" required="" class="many-to-one">
-			<g:if test="${enderecoInstance?.estado?.id }">
-				<g:render template="optionsCidade" model="${[cidadeList:  cidadeList]}" />
-				<script type="text/javascript">
-					jQuery("#cidade").val(${enderecoInstance?.cidade?.id});
-				</script>
-			</g:if>
-			<g:else>
-				<option>Escolha um Estado...</option>
-			</g:else>
-		</select>
-	</div>
-	
-	<div class="fieldcontain ${hasErrors(bean: enderecoInstance, field: 'cep', 'error')} required">
-		<label for="cep">
-			<g:message code="endereco.cep.label" default="Cep" />
-		</label>
-		<g:textField name="cep" value="${enderecoInstance?.cep}"/>
-	</div>
-	<fieldset class="buttons">
-		<input type="submit" class="save" value="${enderecoInstance?.id ? 'Atualizar' : 'Adicionar' }" name="btnSalvar" value="Salvar" />
-	</fieldset>
 </g:formRemote>
 <script type="text/javascript">
 	function carregarListaEnderecos(){

@@ -3,107 +3,109 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="avocado">
 		<g:set var="entityName" value="${message(code: 'funcionario.label', default: 'Funcionario')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-funcionario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 		<div id="show-funcionario" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list funcionario">
-			
-				<g:if test="${funcionarioInstance?.nome}">
-				<li class="fieldcontain">
-					<span id="nome-label" class="property-label"><g:message code="funcionario.nome.label" default="Nome" /></span>
-						<span class="property-value" aria-labelledby="nome-label"><g:fieldValue bean="${funcionarioInstance}" field="nome"/></span>
-				</li>
-				</g:if>
-			
-				<g:if test="${funcionarioInstance?.cargo}">
-				<li class="fieldcontain">
-					<span id="cargo-label" class="property-label"><g:message code="funcionario.cargo.label" default="Cargo" /></span>
-						<span class="property-value" aria-labelledby="cargo-label"><g:fieldValue bean="${funcionarioInstance}" field="cargo.nome"/></span>
-				</li>
-				</g:if>
-			
-				<g:if test="${funcionarioInstance?.departamento}">
-				<li class="fieldcontain">
-					<span id="departamento-label" class="property-label"><g:message code="funcionario.departamento.label" default="Departamento" /></span>
-						<span class="property-value" aria-labelledby="cargo-label"><g:fieldValue bean="${funcionarioInstance}" field="departamento.nome"/></span>					
-				</li>
-				</g:if>
-			
-			</ol>
-			
-			<!--  formContato agrupa o código HTML para tratar os contatos do Funcionário  -->
-			<div id="formContato" style="border: 1px solid;">
-				<h1>Contatos</h1>
-				<div id="dvMensagem" style="text-align:center;"></div>
-				<section id="contatoCreate">
-					<g:render template="contato" />
-				</section>
-				<section id="contatoList">
-					<g:render template="listaContatos" />
-				</section>
-			</div>
-			<!-- FIM do formContato -->
+			<div class="row-fluid">
+				<div class="span12">
+					<g:if test="${flash.message}">
+						<div id="dvMensagem" class="message alert" role="status" style="display: block;">${flash.message}</div>
+					</g:if>
+					<div class="top-bar">
+						<h3><i class="icon-user"></i> Funcionário</h3>
+					</div>
+					<div class="well no-padding">
+						<div class="control-group span12 sem-margin-left">
+							<label class="control-label">Nome:</label>
+							<div class="controls"><g:fieldValue bean="${funcionarioInstance}" field="nome"/></div>
+						</div>
+						<div class="control-group span12 sem-margin-left">
+							<label class="control-label">Cargo:</label>
+							<div class="controls"><g:fieldValue bean="${funcionarioInstance}" field="cargo.nome"/></div>
+						</div>
+						<div class="control-group span12 sem-margin-left">
+							<label class="control-label">Departamento:</label>
+							<div class="controls"><g:fieldValue bean="${funcionarioInstance}" field="departamento.nome"/></div>
+						</div>
+					</div>
 
-			<!--  formDependente agrupo o código HTML para tratar os dependentes do Funcionário  -->
-			<div id="formDependente" style="border: 1px solid;">
-				<h1>Dependente</h1>
-				<div id="dvMensagemDependente" style="text-align:center;"></div>
-				<section id="dependenteCreate">
-					<g:render template="dependente" />
-				</section>
-				<section id="dependenteList">
-					<g:render template="listaDependentes" />
-				</section>
-			</div>
-			<!-- FIM do formDependente -->
+					<div class="top-bar">
+						<ul class="tab-container">
+						  <li class="active"><a href="#tab1"><i class="icon-phone"></i> Contatos</a></li>
+						  <li><a href="#tab2"><i class="icon-group"></i> Dependentes</a></li>
+						  <li><a href="#tab3"><i class="icon-certificate"></i> Titulações</a></li>
+						  <li><a href="#tab4"><i class="icon-envelope"></i> Endereços</a></li>
+						</ul>
+					</div>
 
-			<!--  formTitulacao agrupo o código HTML para tratar as titulações do Funcionário  -->
-			<div id="formTitulacao" style="border: 1px solid;">
-				<h1>Titulações</h1>
-				<div id="dvMensagemTitulacao" style="text-align:center;"></div>
-				<section id="titulacaoCreate">
-					<g:render template="titulacao" />
-				</section>
-				<section id="titulacaoList">
-					<g:render template="listaTitulacoes" />
-				</section>
+					<div class="well">
+						<div class="tab-content">
+						  	<div class="tab-pane active" id="tab1">
+						  		<!--  formContato agrupa o código HTML para tratar os contatos do Funcionário  -->
+								<div id="formContato">
+									<div id="dvMensagem" class="alert"></div>
+									<section id="contatoCreate">
+										<g:render template="contato" />
+									</section>
+									<section id="contatoList">
+										<g:render template="listaContatos" />
+									</section>
+								</div>
+								<!-- FIM do formContato -->
+						  	</div>
+						  	<div class="tab-pane" id="tab2">
+						  		<!--  formDependente agrupo o código HTML para tratar os dependentes do Funcionário  -->
+								<div id="formDependente">
+									<div id="dvMensagemDependente" class="alert"></div>
+									<section id="dependenteCreate">
+										<g:render template="dependente" />
+									</section>
+									<section id="dependenteList">
+										<g:render template="listaDependentes" />
+									</section>
+								</div>
+								<!-- FIM do formDependente -->
+						  	</div>
+						  	<div class="tab-pane" id="tab3">
+						  		<!--  formTitulacao agrupo o código HTML para tratar as titulações do Funcionário  -->
+								<div id="formTitulacao">
+									<div id="dvMensagemTitulacao" class="alert"></div>
+									<section id="titulacaoCreate">
+										<g:render template="titulacao" />
+									</section>
+									<section id="titulacaoList">
+										<g:render template="listaTitulacoes" />
+									</section>
+								</div>
+								<!-- FIM do formTitulacao -->
+						  	</div>
+						  	<div class="tab-pane" id="tab4">
+						  		<!--  formEndereco agrupa o código HTML para tratar os endereços do Funcionário  -->
+								<div id="formEndereco">
+									<div id="dvMensagemEndereco" class="alert"></div>
+									<section id="enderecoCreate">
+										<g:render template="endereco" />
+									</section>
+									<section id="enderecoList">
+										<g:render template="listaEnderecos" />
+									</section>
+								</div>
+								<!-- FIM do formContato -->
+						  	</div>
+						</div>
+					</div>
+					
+					<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
+						<div class="form-actions">
+							<g:link class="btn btn-primary" action="edit" resource="${funcionarioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>&nbsp;&nbsp;
+							<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+						</div>
+					</g:form>
+				</div>
 			</div>
-			<!-- FIM do formTitulacao -->
-			
-			<!--  formEndereco agrupa o código HTML para tratar os endereços do Funcionário  -->
-			<div id="formEndereco" style="border: 1px solid;">
-				<h1>Endereços</h1>
-				<div id="dvMensagemEndereco" style="text-align:center;"></div>
-				<section id="enderecoCreate">
-					<g:render template="endereco" />
-				</section>
-				<section id="enderecoList">
-					<g:render template="listaEnderecos" />
-				</section>
-			</div>
-			<!-- FIM do formContato -->
-			
-			<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${funcionarioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
 		</div>
 	</body>
 </html>

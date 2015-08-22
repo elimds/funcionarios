@@ -42,8 +42,8 @@
 										<td>${funcionarioInstance?.dataNascimento}</td>
 										<td>
 											<nav>
-												<g:link class="edit" action="edit" id="${funcionarioInstance}.id" resource="${funcionarioInstance}"><i class="icon-edit-sign icon-2x icon-black"></i></g:link>&nbsp;&nbsp;
-												<g:link class="delete" action="delete" id="${funcionarioInstance}.id" resource="${funcionarioInstance}" before="if(!confirm('Você tem certeza que deseja excluir este registro?')) return false" title="Excluir"><i class="icon-edit-sign icon-2x icon-black"></i></g:link>
+												<g:link class="edit" action="edit" id="${funcionarioInstance}.id" resource="${funcionarioInstance}" title="Editar"><i class="icon-edit-sign icon-2x icon-black"></i></g:link>&nbsp;&nbsp;
+												<g:link class="delete" action="delete" id="${funcionarioInstance}.id" resource="${funcionarioInstance}" before="if(!confirm('Você tem certeza que deseja excluir este registro?')) return false" title="Excluir"><i class="icon-remove icon-2x icon-black"></i></g:link>
 											</nav>
 										</td>
 									</tr>
