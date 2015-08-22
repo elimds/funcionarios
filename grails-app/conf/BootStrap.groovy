@@ -3,9 +3,9 @@ import funcionarios.*
 class BootStrap {
 
     def init = { servletContext ->
-		if (!User.count()){
-			new User(login: 'usuario', password: '123456', name: 'Usuário do Sistema')
-		}
+//		if (!User.count()){
+//			new User(login: 'usuario', password: '123456', name: 'Usuário do Sistema')
+//		}
 		if (!Departamento.count()){
 			new Departamento(nome: "Gerência de Tecnologia da Informação", sigla: "GTI", ramal: "5607", email: "gti.rv@ifgoiano.edu.br", chefe: "Eli Medeiros Sousa").save()
 		}

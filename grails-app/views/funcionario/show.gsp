@@ -31,6 +31,12 @@
 							<div class="controls"><g:fieldValue bean="${funcionarioInstance}" field="departamento.nome"/></div>
 						</div>
 					</div>
+					<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
+						<div class="form-actions">
+							<g:link class="btn btn-primary" action="edit" resource="${funcionarioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>&nbsp;&nbsp;
+							<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+						</div>
+					</g:form>
 
 					<div class="top-bar">
 						<ul class="tab-container">
@@ -98,12 +104,6 @@
 						</div>
 					</div>
 					
-					<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
-						<div class="form-actions">
-							<g:link class="btn btn-primary" action="edit" resource="${funcionarioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>&nbsp;&nbsp;
-							<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-						</div>
-					</g:form>
 				</div>
 			</div>
 		</div>
