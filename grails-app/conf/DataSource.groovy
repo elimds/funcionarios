@@ -42,7 +42,7 @@ environments {
             url = "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path
             username = uri.userInfo.split(":")[0]
             password = uri.userInfo.split(":")[1]
-            8?
+            */
         }
     }
 }
