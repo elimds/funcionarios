@@ -15,7 +15,7 @@
 	  	<link href="${request.contextPath}/avocado/css/bootstrap-responsive.css" rel="stylesheet">
 	  	<link href="${request.contextPath}/avocado/css/style.css" rel="stylesheet">
 		<style type="text/css">
-			body { padding-top: 120px; }
+			body { padding-top: 150px; }
 		</style>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
@@ -39,7 +39,7 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
     		<div class="navbar-inner">
       			<div class="container">
-        			<a href="#">
+        			<a href="/funcionarios">
           				<button type="button" class="btn btn-navbar mobile-menu">
 	            			<span class="icon-bar"></span>
 	            			<span class="icon-bar"></span>
@@ -47,33 +47,10 @@
           				</button>
         			</a>
 			        <a class="brand" href="/funcionarios"><img src="${request.contextPath}/avocado/img/logo_censo_transparente.png" alt="" width="140"></a>
-			        <ul class="nav pull-right">
-			          	<li class="dropdown">
-			            	<a href="/funcionarios">
-			              		<i class="icon-user icon-white"></i>
-			              		<span class="hidden-phone">${session.user.name}</span>
-			            	</a>
-			          	</li>
-			          	<li>
-							<a href="/funcionarios/user/logout">
-	    						<i class="icon-off icon-white"></i>
-	    						<span class="hidden-phone">Logout</span>
-	    					</a>
-	    				</li>
-			        </ul>
       			</div>
     		</div>
   		</div>
 		<div class="container">
-			<div class="navbar navbar-inverse" id="nav">
-	      		<div class="navbar-inner">
-	        		<ul class="nav">
-	          			<li><a href="/funcionarios"><i class="icon-list"></i> Dashboard</a></li>
-	          			<li><a href="#"><i class="icon-list"></i> Gallery</a></li>
-	        		</ul>
-	      		</div>
-    		</div>
-
 			<g:layoutBody/>
 		</div>
   	</body>
