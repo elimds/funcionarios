@@ -8,14 +8,42 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class FuncionarioController {
 
-    def beforeInterceptor = [action:this.&auth, except:["index", "list", "show"]]
+    def beforeInterceptor = [action:this.&auth, except:["index", "list", "show", "optionsCidade"]]
 
     def auth() {
-      if(session.user && session.user.login != "admin") {
-        flash.message = "Desculpe, você não tem permissão para realizar esta ação. =("
-        redirect(controller:"funcionario", action:"index")
-        return false
-      }
+		println "Params= ${params.action} params.id = ${params.id}"
+		println params 
+		// session?.user?.id != funcionarioInstance?.usuario?.id
+		if (session?.user?.login != "admin" && (params.id || params.funcionario.id )){
+			Funcionario funcionario
+			if (params.action == "excluirDependente" ){
+				def dependente = Dependente.get(params.id)
+				funcionario = dependente.funcionario
+			} else if (params.action == "excluirContato"){
+				def contato = Contato.get(params.id)
+				funcionario = contato.funcionario
+			} else if (params.action == "excluirEndereco"){
+				def endereco = Endereco.get(params.id)
+				funcionario = endereco.funcionario
+			} else if (params.action == "excluirTitulacao"){
+				def titulacao = Titulacao.get(params.id)
+				funcionario = titulacao.funcionario
+			} else {
+				def id = params.id ? params.id : params.funcionario.id
+				funcionario = Funcionario.get(id)
+			}
+			if (funcionario.usuario.id == session.user?.id){
+				return true
+			} else {
+				flash.message = "Desculpe, você não tem permissão para realizar esta ação. =("
+				redirect(controller:"funcionario", action:"index")
+				return false
+			}
+		} else if (session?.user?.login != "admin") {
+	        flash.message = "Desculpe, você não tem permissão para realizar esta ação. =("
+	        redirect(controller:"funcionario", action:"index")
+	        return false
+		}
     }    
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

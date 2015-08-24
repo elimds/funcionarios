@@ -14,9 +14,11 @@
 					<g:if test="${flash.message}">
 						<div id="dvMensagem" class="message alert" role="status" style="display: block;">${flash.message}</div>
 					</g:if>
-					<div class="link-add">
-						<g:link class="create" action="create"><i class="icon-plus"></i> Novo Funcionário</g:link>
-					</div>
+					<g:if test="${session?.user?.login == "admin" }">
+						<div class="link-add">
+							<g:link class="create" action="create"><i class="icon-plus"></i>Novo Funcionário</g:link>
+						</div>
+					</g:if>
 					<div class="top-bar">
 						<h3><i class="icon-list"></i> Funcionários</h3>
 					</div>
@@ -44,8 +46,12 @@
 										<td>${funcionarioInstance?.dataNascimento}</td>
 										<td>
 											<nav>
-												<g:link class="edit" action="edit" id="${funcionarioInstance.id}" resource="${funcionarioInstance}" title="Editar"><i class="icon-edit-sign icon-2x icon-black"></i></g:link>&nbsp;&nbsp;
-												<g:link class="delete" action="delete" id="${funcionarioInstance.id}" resource="${funcionarioInstance}" before="if(!confirm('Você tem certeza que deseja excluir este registro?')) return false" title="Excluir"><i class="icon-remove icon-2x icon-black"></i></g:link>
+												<g:if test="${session?.user?.login == "admin" || funcionarioInstance?.usuario?.id == session?.user?.id }">
+													<g:link class="edit" action="edit" id="${funcionarioInstance.id}" resource="${funcionarioInstance}" title="Editar"><i class="icon-edit-sign icon-2x icon-black"></i></g:link>&nbsp;&nbsp;
+												</g:if>
+												<g:if test="${session?.user?.login == "admin" }">
+													<g:link class="delete" action="delete" id="${funcionarioInstance.id}" resource="${funcionarioInstance}" before="if(!confirm('Você tem certeza que deseja excluir este registro?')) return false" title="Excluir"><i class="icon-remove icon-2x icon-black"></i></g:link>
+												</g:if>
 											</nav>
 										</td>
 									</tr>
