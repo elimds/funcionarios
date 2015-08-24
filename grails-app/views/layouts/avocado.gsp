@@ -46,16 +46,16 @@
 	            			<span class="icon-bar"></span>
           				</button>
         			</a>
-			        <a class="brand" href="#"><i class="icon-leaf"></i> Avocado<b>Panel</b></a>
+			        <a class="brand" href="#"><i class="icon-leaf"></i> Censo<b>Funcional</b></a>
 			        <ul class="nav pull-right">
 			          	<li class="dropdown">
-			            	<a href="#">
+			            	<a href="/funcionarios/user/">
 			              		<i class="icon-user icon-white"></i>
-			              		<span class="hidden-phone">Anderson Maia</span>
+			              		<span class="hidden-phone">${session.user.name}</span>
 			            	</a>
 			          	</li>
 			          	<li>
-							<a href="#">
+							<a href="/funcionarios/user/logout">
 	    						<i class="icon-off icon-white"></i>
 	    						<span class="hidden-phone">Logout</span>
 	    					</a>
