@@ -4,7 +4,10 @@ class BootStrap {
 
     def init = { servletContext ->
 		if (!User.count()){
-			new User(login: 'usuario', password: '123456', name: 'Usuário do Sistema')
+			def passwordHashed = "123456".encodeAsPassword()
+			def passwordHashed2 = "admin".encodeAsPassword()
+			new User(login: 'usuario', password: passwordHashed, name: 'Usuário do Sistema').save()
+			new User(login: 'admin', password: passwordHashed2, name: 'Administrador').save()
 		}
 		if (!Departamento.count()){
 			new Departamento(nome: "Gerência de Tecnologia da Informação", sigla: "GTI", ramal: "5607", email: "gti.rv@ifgoiano.edu.br", chefe: "Eli Medeiros Sousa").save()
