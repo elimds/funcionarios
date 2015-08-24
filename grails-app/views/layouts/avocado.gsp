@@ -46,10 +46,10 @@
 	            			<span class="icon-bar"></span>
           				</button>
         			</a>
-			        <a class="brand" href="/funcionarios"><img src="${request.contextPath}/avocado/img/logo_censo_transparente.png" alt="" width="140"></a>
+			        <a class="brand" href="#"><img src="${request.contextPath}/avocado/img/logo_censo_transparente.png" alt="" width="140"></a>
 			        <ul class="nav pull-right">
 			          	<li class="dropdown">
-			            	<a href="/funcionarios">
+			            	<a href="/funcionarios/user/">
 			              		<i class="icon-user icon-white"></i>
 			              		<span class="hidden-phone">${session.user.name}</span>
 			            	</a>
@@ -68,8 +68,9 @@
 			<div class="navbar navbar-inverse" id="nav">
 	      		<div class="navbar-inner">
 	        		<ul class="nav">
-	          			<li><a href="/funcionarios"><i class="icon-list"></i> Dashboard</a></li>
-	          			<li><a href="#"><i class="icon-list"></i> Gallery</a></li>
+	          			<li><a href="/funcionarios/cargo/index"><i class="icon-list-alt"></i> Cargos</a></li>
+	          			<li><a href="/funcionarios/departamento/index"><i class="icon-sitemap"></i> Departamentos</a></li>
+	          			<li><a href="/funcionarios/funcionario/index"><i class="icon-user"></i> Funcionários</a></li>
 	        		</ul>
 	      		</div>
     		</div>
