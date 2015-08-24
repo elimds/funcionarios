@@ -33,8 +33,13 @@
 					</div>
 					<g:form url="[resource:funcionarioInstance, action:'delete']" method="DELETE">
 						<div class="form-actions">
-							<g:link class="btn btn-primary" action="edit" resource="${funcionarioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>&nbsp;&nbsp;
-							<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+							<g:if test="${session?.user?.login == "admin" || funcionarioInstance?.usuario?.id == session?.user?.id }">
+								<g:link class="btn btn-primary" action="edit" resource="${funcionarioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>&nbsp;&nbsp;
+							</g:if>
+							<g:if test="${session?.user?.login == "admin" }">
+								<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+							</g:if>
+						
 						</div>
 					</g:form>
 

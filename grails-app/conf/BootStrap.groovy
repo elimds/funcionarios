@@ -1,17 +1,41 @@
+import java.util.Date;
+
 import funcionarios.*
+import groovy.json.internal.Dates;
 
 class BootStrap {
 
     def init = { servletContext ->
-//		if (!User.count()){
-//			new User(login: 'usuario', password: '123456', name: 'Usuário do Sistema')
-//		}
 		if (!Departamento.count()){
 			new Departamento(nome: "Gerência de Tecnologia da Informação", sigla: "GTI", ramal: "5607", email: "gti.rv@ifgoiano.edu.br", chefe: "Eli Medeiros Sousa").save()
 		}
 		if (!Cargo.count()){
 			new Cargo(nome: "Analista de Tecnologia da Informação", classe: "E").save()
 			new Cargo(nome: "Técnico de Tecnologia da Informação", classe: "D").save()
+		}
+		if (!User.count()){
+			User user
+			user = new User(login: 'admin', password: 'admin', name: 'Administrador')
+			user.password = user.password.encodeAsPassword()
+			user.save()
+			user = new User(login: 'usuario', password: '123456', name: 'Usuário do Sistema')
+			user.password = user.password.encodeAsPassword()
+			user.save()
+			Date data = new Date()
+//			data.year = 1980
+//			date.month = 4
+//			date.day = 3
+			Funcionario funcionario = new Funcionario(nome: 'Antônio João Maria', cpf: '020.289.871-70', dataNascimento: data, 
+					estadoCivil: EstadoCivilEnum.SOLTEIRO, naturalidade: 'Rio Verde', sexo: SexoEnum.MASCULINO, pis: '11111111111', 
+					identidade: '111111111', tituloEleitor: '11111111111', matricula: 3333333, escolaridade: EscolaridadeEnum.MESTRE, 
+					lattes: 'http://lattes.cnpq.gov.br', cargo: Cargo.get(1), regimeJuridico: RegimeJuridicoEnum.UNICO, 
+					lotacao: Departamento.get(1), jornadaTrabalho: JornadaEnum.QUARENTA_HORAS, situacao: SituacaoEnum.ATIVO,
+					funcaoGratificada: FuncaoEnum.CD4, contaBancaria: '3333-3', banco: 104, nomeBanco: 'CEF', usuario: user,
+					departamento: Departamento.get(1) )
+			funcionario.save()
+			if (funcionario?.hasErrors()) {
+				println funcionario?.errors
+			}
 		}
 		if (!Estado.count()){
 			estados()
