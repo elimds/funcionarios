@@ -27,6 +27,7 @@
 							<thead>
 								<tr>
 									<th>Matrícula</th>
+									<th>Nome</th>
 									<th>Cargo</th>
 									<th>Departamento</th>
 									<th>CPF</th>
@@ -38,6 +39,7 @@
 								<g:each in="${funcionarioInstanceList}" var="funcionarioInstance">
 									<tr>
 										<td>${funcionarioInstance?.id}</td>
+										<td>${funcionarioInstance?.nome}</td>
 										<td>${funcionarioInstance?.cargo.nome}</td>
 										<td>${funcionarioInstance?.departamento.nome}</td>
 										<td>${funcionarioInstance?.cpf}</td>
