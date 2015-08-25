@@ -21,7 +21,7 @@ web-app/WEB-INF/tld/fmt.tld
 /web-app/WEB-INF/classes
 /.link_to_grails_plugins/
 /target-eclipse/*
-*.h2.db                                                                                            
+*.h2.db
 *.lock.db
 *.trace.db
 stacktrace.log
