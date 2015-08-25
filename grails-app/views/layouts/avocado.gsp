@@ -71,6 +71,7 @@
 	          			<li><a href="/funcionarios/cargo/index"><i class="icon-list-alt"></i> Cargos</a></li>
 	          			<li><a href="/funcionarios/departamento/index"><i class="icon-sitemap"></i> Departamentos</a></li>
 	          			<li><a href="/funcionarios/funcionario/index"><i class="icon-user"></i> Funcionários</a></li>
+	          			<li><a href="/funcionarios/user/create"><i class="icon-plus"></i> Adicionar Usuário</a></li>
 	        		</ul>
 	      		</div>
     		</div>
