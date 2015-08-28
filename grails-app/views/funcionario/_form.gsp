@@ -1,6 +1,6 @@
 <%@ page import="funcionarios.Funcionario" %>
 <div class="well no-padding">
-	<g:hiddenField name="usuario.id" value="${session.user.id}" />
+
 	<div class="control-group span6 sem-margin-left ${hasErrors(bean: funcionarioInstance, field: 'nome', 'error')} required">
 		<label class="control-label" for="nome">Nome Completo:</label>
 		<div class="controls">
@@ -18,7 +18,7 @@
 	<div class="control-group span12 sem-margin-left ${hasErrors(bean: funcionarioInstance, field: 'dataNascimento', 'error')} required">
 		<label class="control-label" for="dataNascimento">Data de Nascimento:</label>
 		<div class="controls">
-			<g:datePicker name="dataNascimento" precision="day"  value="${funcionarioInstance?.dataNascimento}"  />
+			<g:datePicker name="dataNascimento" precision="day"  value="${funcionarioInstance?.dataNascimento}" />
 		</div>
 	</div>
 
@@ -156,6 +156,20 @@
 			<g:textField name="tituloEleitor" required="" value="${funcionarioInstance?.tituloEleitor}" class="span12" />
 		</div>
 	</div>
+
+	%{-- Se quem cadastra é o usuario admin, exibe drop down, senão usa hidden com id do usuario da sessão --}%
+	<g:if test="${session?.user?.login == "admin" }">
+		<div class="control-group span12 sem-margin-left ${hasErrors(bean: userInstance, field: 'login', 'error')} required">
+			<label class="control-label" for="login">Usuário:</label>
+			<div class="controls">
+				<g:select id="usuario" name="usuario.id" from="${funcionarios.User.list()}" optionKey="id" optionValue="login" required="" value="${funcionarioInstance?.usuario?.id}" class="many-to-one" noSelection="['':'- Selecione -']"/>
+			</div>
+		</div>	
+	</g:if>
+	<g:else>
+		<g:hiddenField name="usuario.id" value="${session.user.id}" />
+	</g:else>
+
 
 	<div class="clearfix"></div>
 

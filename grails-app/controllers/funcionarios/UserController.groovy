@@ -134,10 +134,10 @@ class UserController {
      
       //Verifica se o usuario ja possui cadastro de funcionario, se não redireciona para preencher form
       if(funcionario < 1 && session.user.login != "admin"){
-        flash.message = "Olá ${user.name}! Por favor, cadastre os seus dados pessoais. ${funcionario} - ${user}"
+        flash.message = "Olá ${user.name}! Por favor, cadastre os seus dados pessoais."
         redirect(controller:"funcionario", action:"create")  
       }else{
-        flash.message = "Olá ${user.name}! ${funcionario} - ${user}"
+        flash.message = "Olá ${user.name}!"
         redirect(controller:"funcionario", action:"index")
       }
 

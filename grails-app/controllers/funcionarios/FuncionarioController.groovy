@@ -1,14 +1,12 @@
 package funcionarios
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class FuncionarioController {
 
-    def beforeInterceptor = [action:this.&auth, except:["index", "list", "show", "create", "edit", "update" , "save", "optionsCidade"]]
+    def beforeInterceptor = [action:this.&auth, except:["index", "list", "show", "create", "save", "optionsCidade"]]
 
     def auth() {
 		println "Params= ${params.action} params.id = ${params.id}"
