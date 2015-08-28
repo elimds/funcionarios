@@ -16,7 +16,7 @@
 			<g:each var="dependente" in="${funcionarioInstance?.dependentes}">
 				<tr>
 					<td>${dependente?.nome}</td>
-					<td>${dependente?.dataNascimento}</td>
+					<td><g:formatDate format="dd/MM/yyyy" date="${dependente?.dataNascimento}" /></td>
 					<td>${dependente?.identidade}</td>
 					<td>${dependente?.cpf}</td>
 					<td>

@@ -44,7 +44,7 @@
 					
 						<td>${fieldValue(bean: dependenteInstance, field: "cpf")}</td>
 					
-						<td><g:formatDate date="${dependenteInstance.dataNascimento}" /></td>
+						<td><g:formatDate format="dd/MM/yyyy" date="${dependenteInstance.dataNascimento}" /></td>
 					
 						<td>${fieldValue(bean: dependenteInstance, field: "funcionario")}</td>
 					

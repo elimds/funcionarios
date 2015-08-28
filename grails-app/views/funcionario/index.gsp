@@ -43,7 +43,7 @@
 										<td>${funcionarioInstance?.cargo.nome}</td>
 										<td>${funcionarioInstance?.departamento.nome}</td>
 										<td>${funcionarioInstance?.cpf}</td>
-										<td>${funcionarioInstance?.dataNascimento}</td>
+										<td><g:formatDate format="dd/MM/yyyy" date="${funcionarioInstance?.dataNascimento}" /></td>
 										<td>
 											<nav>
 												<g:if test="${session?.user?.login == "admin" || funcionarioInstance?.usuario?.id == session?.user?.id }">
