@@ -22,6 +22,7 @@
 			<g:field type="password" name="password" required="" value="${userInstance?.password}" class="span12" />
 		</div>
 	</div>
+
 	<div class="clearfix"></div>
 	<div class="form-actions">
 		<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />

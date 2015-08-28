@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class FuncionarioController {
 
-    def beforeInterceptor = [action:this.&auth, except:["index", "list", "show", "optionsCidade"]]
+    def beforeInterceptor = [action:this.&auth, except:["index", "list", "show", "create", "edit", "update" , "save", "optionsCidade"]]
 
     def auth() {
 		println "Params= ${params.action} params.id = ${params.id}"

@@ -15,9 +15,11 @@
 				<div id="dvMensagem" class="alert"></div>
 				<section id="cargoCreation" class="not"></section>
 				<nav class="bottom">
-					<div class="link-add">
-						<g:remoteLink controller="cargo" action="novo" update="cargoCreation"><i class="icon-plus"></i> Novo Cargo</g:remoteLink>
-					</div>
+					<g:if test="${session?.user?.login == "admin"}">
+						<div class="link-add">
+							<g:remoteLink controller="cargo" action="novo" update="cargoCreation"><i class="icon-plus"></i> Novo Cargo</g:remoteLink>
+						</div>
+					</g:if>
 				</nav>
 				
 				<section id="cargoList">

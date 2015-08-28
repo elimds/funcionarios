@@ -127,8 +127,20 @@ class UserController {
     def user = User.findByLoginAndPassword(params.login, passwordHashed)
     if(user){
       session.user = user
-      flash.message = "Olá ${user.name}!"
-      redirect(controller:"funcionario", action:"index")
+      //def usuario = session.user.id
+
+      def usuario = session.user.id
+      def funcionario = Funcionario.countByUsuario(usuario)
+     
+      //Verifica se o usuario ja possui cadastro de funcionario, se não redireciona para preencher form
+      if(funcionario < 1 && session.user.login != "admin"){
+        flash.message = "Olá ${user.name}! Por favor, cadastre os seus dados pessoais. ${funcionario} - ${usuario}"
+        redirect(controller:"funcionario", action:"create")  
+      }else{
+        flash.message = "Olá ${user.name}! ${funcionario} - ${usuario}"
+        redirect(controller:"funcionario", action:"index")
+      }
+
     }else{
       flash.message = "Desculpe, ${params.login}. Tente outra vez."
       redirect(action:"login")

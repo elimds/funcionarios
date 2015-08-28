@@ -2,7 +2,7 @@
 <div class="well no-padding">
 	<g:hiddenField name="usuario.id" value="${session.user.id}" />
 	<div class="control-group span6 sem-margin-left ${hasErrors(bean: funcionarioInstance, field: 'nome', 'error')} required">
-		<label class="control-label" for="nome">Nome:</label>
+		<label class="control-label" for="nome">Nome Completo:</label>
 		<div class="controls">
 			<g:textField name="nome" required="" value="${funcionarioInstance?.nome}" class="span12" />
 		</div>
