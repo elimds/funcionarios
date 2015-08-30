@@ -17,7 +17,7 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:h2:file:devFuncionarios;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
     }
@@ -29,18 +29,18 @@ environments {
     }
     production {
         dataSource {
-            //dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            //url = "jdbc:h2:file:funcionarios;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:h2:file:funcionarios;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
 
-			dbCreate = "create-drop"
-            driverClassName = "org.postgresql.Driver"
-            dialect = org.hibernate.dialect.PostgreSQLDialect
-
-            uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
-
-            url = "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path
-            username = uri.userInfo.split(":")[0]
-            password = uri.userInfo.split(":")[1]
+//			dbCreate = "update"
+//            driverClassName = "org.postgresql.Driver"
+//            dialect = org.hibernate.dialect.PostgreSQLDialect
+//
+//            uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
+//
+//            url = "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path
+//            username = uri.userInfo.split(":")[0]
+//            password = uri.userInfo.split(":")[1]
         }
     }
 }
