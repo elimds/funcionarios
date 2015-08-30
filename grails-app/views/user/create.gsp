@@ -19,6 +19,10 @@
 						</g:eachError>
 					</ul>
 					</g:hasErrors>
+					<div class="top-bar">
+						<h3><i class="icon-plus"></i> Incluir Usuário</h3>
+					</div>
+					
 					<g:form url="[resource:userInstance, action:'save']" class="form-horizontal">
 						<g:render template="form"/>
 					</g:form>

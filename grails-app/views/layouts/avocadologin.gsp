@@ -39,14 +39,14 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
     		<div class="navbar-inner">
       			<div class="container">
-        			<a href="/funcionarios">
+        			<a href="${createLink(uri: '/')}">
           				<button type="button" class="btn btn-navbar mobile-menu">
 	            			<span class="icon-bar"></span>
 	            			<span class="icon-bar"></span>
 	            			<span class="icon-bar"></span>
           				</button>
         			</a>
-			        <a class="brand" href="/funcionarios"><img src="${request.contextPath}/avocado/img/logo_censo_transparente.png" alt="" width="140"></a>
+			        <a class="brand" href="${createLink(uri: '/')}"><img src="${request.contextPath}/avocado/img/logo_censo_transparente.png" alt="" width="140"></a>
       			</div>
     		</div>
   		</div>

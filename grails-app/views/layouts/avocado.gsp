@@ -46,16 +46,16 @@
 	            			<span class="icon-bar"></span>
           				</button>
         			</a>
-			        <a class="brand" href="#"><img src="${request.contextPath}/avocado/img/logo_censo_transparente.png" alt="" width="140"></a>
+			        <a class="brand" href="${createLink(uri: '/')}"><img src="${request.contextPath}/avocado/img/logo_censo_transparente.png" alt="" width="140"></a>
 			        <ul class="nav pull-right">
 			          	<li class="dropdown">
-			            	<a href="/funcionarios/user/">
+			            	<a href="${createLink(controller: 'user', action: 'show', id: session.user.id)}">
 			              		<i class="icon-user icon-white"></i>
 			              		<span class="hidden-phone">${session.user.name}</span>
 			            	</a>
 			          	</li>
 			          	<li>
-							<a href="/funcionarios/user/logout">
+							<a href="${createLink(controller: 'user', action: 'logout')}">
 	    						<i class="icon-off icon-white"></i>
 	    						<span class="hidden-phone">Logout</span>
 	    					</a>
@@ -68,10 +68,10 @@
 			<div class="navbar navbar-inverse" id="nav">
 	      		<div class="navbar-inner">
 	        		<ul class="nav">
-	          			<li><a href="/funcionarios/cargo/index"><i class="icon-list-alt"></i> Cargos</a></li>
-	          			<li><a href="/funcionarios/departamento/index"><i class="icon-sitemap"></i> Departamentos</a></li>
-	          			<li><a href="/funcionarios/funcionario/index"><i class="icon-user"></i> Funcionários</a></li>
-	          			<li><a href="/funcionarios/user/create"><i class="icon-plus"></i> Adicionar Usuário</a></li>
+	          			<li><a href="${createLink(controller: 'cargo', action: 'index')}"><i class="icon-list-alt"></i> Cargos</a></li>
+	          			<li><a href="${createLink(controller: 'departamento', action: 'index')}"><i class="icon-sitemap"></i> Departamentos</a></li>
+	          			<li><a href="${createLink(controller: 'funcionario', action: 'index')}"><i class="icon-user"></i> Funcionários</a></li>
+	          			<li><a href="${createLink(controller: 'user', action: 'create')}"><i class="icon-plus"></i> Adicionar Usuário</a></li>
 	        		</ul>
 	      		</div>
     		</div>

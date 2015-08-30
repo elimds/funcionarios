@@ -1,8 +1,5 @@
 <%@ page import="funcionarios.User" %>
 
-<div class="top-bar">
-	<h3><i class="icon-plus"></i> Incluir Usuário</h3>
-</div>
 <div class="well no-padding">
 	<div class="control-group span4 sem-margin-left ${hasErrors(bean: userInstance, field: 'name', 'error')} required">
 		<label class="control-label" for="name">Nome:</label>

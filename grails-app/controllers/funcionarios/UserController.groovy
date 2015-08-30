@@ -7,7 +7,6 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class UserController {
-
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -49,7 +48,12 @@ class UserController {
     }
 
     def edit(User userInstance) {
-        respond userInstance
+		if (session.user.login == "admin" || userInstance.id == session.user.id){
+			respond userInstance
+		} else {
+			flash.message = "Desculpe, você não tem permissão para realizar esta ação. =("
+			redirect(action: index)
+		}
     }
 
     @Transactional
@@ -63,12 +67,13 @@ class UserController {
             respond userInstance.errors, view:'edit'
             return
         }
-
+		
+		userInstance.password = userInstance.password.encodeAsPassword()
         userInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'User.label', default: 'User'), userInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'User.label', default: 'User'), userInstance.name])
                 redirect userInstance
             }
             '*'{ respond userInstance, [status: OK] }
@@ -110,7 +115,7 @@ class UserController {
 
 
 
-  def beforeInterceptor = [action:this.&auth, except:["logout", "login"]]
+  def beforeInterceptor = [action:this.&auth, except:["logout", "login", "index", "show", "edit"]]
 
   def auth() {
     if(session.user && session.user.login != "admin") {
